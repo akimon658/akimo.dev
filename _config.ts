@@ -20,7 +20,7 @@ import variableCompress from "postcss-variable-compress"
 import rehypeExternalLinks from "rehype-external-links"
 import rehypeRaw from "rehype-raw"
 import typography from "@tailwindcss/typography"
-import Parser, { Language } from "tree-sitter"
+import Parser, { type Language } from "tree-sitter"
 import Bash from "tree-sitter-bash"
 import Go from "tree-sitter-go"
 import Lua from "@tree-sitter-grammars/tree-sitter-lua"
@@ -61,7 +61,7 @@ const parseCode = (code: string, lang: string) => {
     lua: Lua,
     markdown: Markdown,
     shell: Bash,
-    ts: TypeScript.typescript,
+    typescript: TypeScript.typescript,
     yaml: YAML,
   } as Record<string, Language>
 
