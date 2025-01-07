@@ -101,6 +101,10 @@
   color: var(--vsc-front);
 }
 
+.ts-export {
+  color: var(--vsc-pink);
+}
+
 .ts-field_identifier {
   color: var(--vsc-light-blue);
 }
@@ -250,6 +254,14 @@
 }
 
 .ts-this {
+  color: var(--vsc-blue);
+}
+
+.ts-throw {
+  color: var(--vsc-pink);
+}
+
+.ts-true {
   color: var(--vsc-blue);
 }
 
