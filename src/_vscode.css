@@ -213,6 +213,10 @@
   color: var(--vsc-blue-green);
 }
 
+.ts-pair>.ts-string:first-child {
+  color: var(--vsc-light-blue);
+}
+
 .ts-predefined_type>.ts-string {
   color: var(--vsc-blue-green);
 }
