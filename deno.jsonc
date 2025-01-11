@@ -3,7 +3,7 @@
     "lume": "echo \"import 'lume/cli.ts'\" | deno run -A -",
     "build": "deno task lume",
     "serve": "deno task lume -s --port 4000",
-    "minify-selectors": "echo \"import 'minify-selectors/build/run.js'\" | deno run -A - --input public --output public",
+    "minify-attrs": "deno run -A jsr:@akimon658/minify-attrs@0.1.0 public",
   },
   "compilerOptions": {
     "jsx": "react-jsx",
@@ -24,7 +24,6 @@
     "lume/": "https://deno.land/x/lume@v2.4.3/",
     "markdown-it": "npm:markdown-it@14.1.0",
     "markdown-it-link-attributes": "npm:markdown-it-link-attributes@4.0.1",
-    "minify-selectors": "npm:minify-selectors@2.6.2",
     "postcss-variable-compress": "npm:postcss-variable-compress@3.0.0",
     "rehype-external-links": "npm:rehype-external-links@3.0.0",
     "rehype-raw": "npm:rehype-raw@7.0.0",

@@ -53,7 +53,7 @@ jobs:
       - name: Build
         run: |
           deno task lume
-          deno task minify-selectors
+          deno task minify-attrs
           touch public/.nojekyll
 
       - name: Configure npm cache # Where wrangler is installed
