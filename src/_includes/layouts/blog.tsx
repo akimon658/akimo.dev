@@ -13,6 +13,7 @@ export default (data: Lume.Data, _helpers: Lume.Helpers) => {
       dark:prose-code:bg-vsc-back
       dark:prose-code:text-gray-300
       dark:prose-headings:text-gray-300
+      dark:prose-li:text-gray-300
       dark:prose-p:text-gray-300
       dark:prose-strong:text-gray-300
       prose
