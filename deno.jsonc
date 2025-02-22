@@ -21,7 +21,7 @@
     "cssnano": "npm:cssnano@7.0.6",
     "cssnano-preset-advanced": "npm:cssnano-preset-advanced@7.0.6",
     "escape-html": "npm:escape-html@1.0.3",
-    "lume/": "https://deno.land/x/lume@v2.5.0/",
+    "lume/": "https://deno.land/x/lume@v2.5.2/",
     "markdown-it": "npm:markdown-it@14.1.0",
     "markdown-it-link-attributes": "npm:markdown-it-link-attributes@4.0.1",
     "postcss-variable-compress": "npm:postcss-variable-compress@3.0.0",
