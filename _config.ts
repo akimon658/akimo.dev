@@ -14,8 +14,6 @@ import transformImages from "lume/plugins/transform_images.ts"
 import cssnano from "cssnano"
 import advancedPreset from "cssnano-preset-advanced"
 import escapeHtml from "escape-html"
-import type { Token } from "markdown-it"
-import mila from "markdown-it-link-attributes"
 import variableCompress from "postcss-variable-compress"
 import rehypeExternalLinks from "rehype-external-links"
 import rehypeRaw from "rehype-raw"
@@ -35,23 +33,6 @@ const site = lume({
   dest: "./public",
   src: "./src",
   location: new URL("https://akimo.dev"),
-}, {
-  markdown: {
-    plugins: [
-      [
-        mila,
-        {
-          matcher: (href: string) => href.startsWith("http"),
-          attrs: {
-            class:
-              "after:content-open-in-new after:dark:content-open-in-new-dark",
-            rel: "noopener noreferrer",
-            target: "_blank",
-          },
-        },
-      ],
-    ],
-  },
 })
 
 const parseCode = (code: string, lang: string) => {
@@ -115,13 +96,6 @@ const parseCode = (code: string, lang: string) => {
   return nodeToHtml(tree.rootNode)
 }
 
-site.hooks.addMarkdownItRule("fence", (tokens: Token[], idx: number) => {
-  const token = tokens[idx]
-  const lang = token.info ? token.info.split(" ")[0] : ""
-
-  return parseCode(token.content, lang)
-})
-
 site.copy("icon")
 
 site.use(googleFonts({
@@ -163,7 +137,7 @@ site.use(mdx({
     [
       rehypeRaw,
       {
-        passThrough: ["mdxJsxFlowElement"],
+        passThrough: ["mdxJsxFlowElement", "mdxJsxTextElement"],
       },
     ],
   ],
