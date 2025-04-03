@@ -49,7 +49,7 @@ export default (data: Lume.Data, _helpers: Lume.Helpers) => {
         mt-8
       ">
         <img
-          src="/img/icon.avif"
+          src="/img/animated/icon.webp"
           height="200"
           width="200"
           className="md:mr-14"
