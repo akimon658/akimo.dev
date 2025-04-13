@@ -1,3 +1,3 @@
 transformImages:
-  format: png
+  format: avif
   resize: [1200, 630]
