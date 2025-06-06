@@ -1,6 +1,7 @@
 /* Settings came from https://github.com/Mofiqul/vscode.nvim */
 
 :root {
+  --vsc-front: #d4d4d4;
   --vsc-gray: #808080;
   --vsc-blue: #569cd6;
   --vsc-accent-blue: #4fc1ff;
@@ -30,6 +31,18 @@
 
 .lang-html .ts-\> {
   color: var(--vsc-gray);
+}
+
+.lang-lua {
+
+  .ts-\{,
+  .ts-\} {
+    color: var(--vsc-blue);
+  }
+}
+
+.ts-and {
+  color: var(--vsc-blue);
 }
 
 .ts-attribute_name {
@@ -82,6 +95,14 @@
 
 .ts-end {
   color: var(--vsc-blue);
+}
+
+.ts-escape_sequence {
+  color: var(--vsc-front);
+}
+
+.ts-export {
+  color: var(--vsc-pink);
 }
 
 .ts-field_identifier {
@@ -180,12 +201,20 @@
   color: var(--vsc-pink);
 }
 
+.ts-or {
+  color: var(--vsc-blue);
+}
+
 .ts-package {
   color: var(--vsc-pink);
 }
 
 .ts-package_identifier {
   color: var(--vsc-blue-green);
+}
+
+.ts-pair>.ts-string:first-child {
+  color: var(--vsc-light-blue);
 }
 
 .ts-predefined_type>.ts-string {
@@ -229,6 +258,14 @@
 }
 
 .ts-this {
+  color: var(--vsc-blue);
+}
+
+.ts-throw {
+  color: var(--vsc-pink);
+}
+
+.ts-true {
   color: var(--vsc-blue);
 }
 

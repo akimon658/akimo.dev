@@ -8,7 +8,7 @@ title: Tree-sitterでシンタックスハイライトするためにHugoからL
 
 まずは次のコードブロックを見てほしい。
 
-```ts
+```typescript
 const parseCode = (code: string, lang: string) => {
   const languages: Record<string, unknown> = {
     go: Go,
@@ -62,7 +62,7 @@ const parseCode = (code: string, lang: string) => {
       lastIndex = child.endIndex
     }
 
-    content += escapeHtml(node.text.slice(lastIndex))
+    content += escapeHtml(node.text.slice(lastIndex - node.startIndex))
 
     return wrapTag(node, content)
   }

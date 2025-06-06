@@ -1,23 +1,24 @@
 article_list: 記事一覧
 articles: 記事
 author_name: あきも
-author_affiliation: 東京科学大学 情報理工学院 学士1年
-privacy_policy: プライバシーポリシー
+author_affiliation: 東京科学大学 数理・計算科学系 学士2年
 see_more: もっと見る
 source_code: ソースコード
+switch_to: 日本語に切り替える
 
 metas:
   site: akimo.dev
   title: =title
   lang: =lang
   twitter: "@akimon658"
+  image: /img/og/default.png
   generator: true
 
 en:
   article_list: Article List
   articles: Articles
-  author_name: Akimo
-  author_affiliation: Institute of Science Tokyo, School of Computing
-  privacy_policy: Privacy Policy
+  author_name: akimo
+  author_affiliation: Department of Mathematical and Computing Science, Institute of Science Tokyo
   see_more: See More
   source_code: Source Code
+  switch_to: Switch to English

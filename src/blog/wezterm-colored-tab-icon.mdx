@@ -1,0 +1,207 @@
+---
+title: WezTermでタブに色付きのアイコンを表示しよう
+metas:
+  image: /img/og/wezterm-colored-tab-icon.png
+---
+
+## やりたいこと
+
+WezTermで複数のタブを開いていると、どのタブで何をしているのかが分かりにくくなる。そこで、起動中のプロセスに応じたアイコンをタブに表示させたい。ただアイコンを表示するだけだとテキストと同じ色になってしまい味気ないので、アイコン部分だけ色を変えて目立たせるのが今回の目標だ。
+
+![WezTermでタブに色付きのアイコンを表示した画像](/img/wezterm-colored-tab-icon.avif)
+
+## プロセス名とアイコンの対応関係を定義する
+
+まず使いたいアイコンを次のページから選ぶ。
+
+<comp.Card href="https://wezfurlong.org/wezterm/config/lua/wezterm/nerdfonts.html" title="wezterm.nerdfonts - Wez's Terminal Emulator" />
+
+そうしたら次のようなテーブルを作る（色はお好み）。
+
+```lua
+local process_icons = {
+  docker = {
+    color = "#1d63ed",
+    icon = wezterm.nerdfonts.md_docker,
+  },
+  go = {
+    color = "#79d4fd",
+    icon = wezterm.nerdfonts.md_language_go,
+  },
+  nvim = {
+    color = "#00b952",
+    icon = wezterm.nerdfonts.custom_neovim,
+  },
+  zsh = {
+    icon = wezterm.nerdfonts.dev_terminal,
+  },
+}
+```
+
+これにより、`process_icons["docker"].color`、`process_icons["docker"].icon`などでそれぞれのプロセスに対応する色とアイコンを取得できるようになる。
+
+## タブのカスタマイズ
+
+WezTermのタブは`format-tab-title`イベントの発火時に実行される関数でカスタマイズできる[^format-tab-title]。
+
+```lua
+wezterm.on("format-tab-title", function(tab, _, _, _, _, _)
+  -- タブに表示したい内容を返す
+end)
+```
+
+以下の設定は基本的にこの関数の中に書いていく。
+
+
+### プロセス名の取得
+
+プロセス名は`tab.active_pane.foreground_process_name`で取得できる[^tabinformation][^paneinformation]が、フルパスなのでファイル名だけを取り出す必要がある。僕はタブにカレントディレクトリを表示するためにも使いたいので、関数として切り出しておく。
+
+```lua
+---@param path string
+local function trim_path(path)
+  return string.gsub(path, "(.*[/\\])(.*)", "%2") -- 拡張子を考慮していないのでWindowsでは動かないかも
+end
+```
+
+`basename`コマンドを使うという手もあるが、Neovimが重くなるように感じたので正規表現にした。ちゃんと調べていないが、キーボードを押下するたびに`format-tab-title`イベントが走っていそうな気がする。
+
+### テキストの色の設定
+
+`format-tab-title`イベントで実行される関数で`string`を返すとデフォルトの色でその文字列が表示されるが、今回はアイコンの色を変えたいのでテキストの色も自分で設定する必要がある。デフォルトの色[^default-color]を参考に設定するとこんな感じ。
+
+```lua
+local text_color = tab.is_active and "#c0c0c0" or "#808080"
+```
+
+厳密にはデフォルトだとホバー時にも色が変わるが、上手く動作しなかったので省略した。
+
+### タブの表示内容を設定
+
+`format-tab-title`の関数から`FormatItem`のテーブルを返すことでタブの表示内容を設定できる[^format-tab-title]。ドキュメントを参考にすると、次のような設定で求めている結果が得られるはず。
+
+```lua
+return {
+  {
+    {
+      Foreground = {
+        Color = tab.is_active and process_icons[process_name].color or text_color,
+      },
+    },
+    { Text = process_icons[process_name].icon or process_name .. " on" },
+    {
+      Foreground = {
+        Color = text_color,
+      },
+    },
+    { Text = " " .. trim_path(pane.current_working_dir.file_path) },
+  }
+}
+```
+
+しかし、これではなぜか閉じるボタンもアイコンと同じ色になってしまう。
+
+![閉じるボタンの色も変わってしまった様子](/img/colored-close-button.avif)
+
+ドキュメントを見ても閉じるボタンの色がどのように決定されるのかについての記述は見つけられなかったが、色々試した結果**タブの最初に現れる非空文字列**と同じ色になるっぽいということが分かった。なので、最初に閉じるボタンと同じ色の[ゼロ幅スペース](https://ja.wikipedia.org/wiki/ゼロ幅スペース)を入れることで対処できる。
+
+```lua
+return {
+  {
+    {
+      Foreground = {
+        Color = text_color,
+      },
+    },
+    {
+      Text = utf8.char(0x200B),
+    },
+    {
+      Foreground = {
+        Color = tab.is_active and process_icons[process_name].color or text_color,
+      },
+    },
+    { Text = process_icons[process_name].icon or process_name .. " on" },
+    {
+      Foreground = {
+        Color = text_color,
+      },
+    },
+    { Text = " " .. trim_path(pane.current_working_dir.file_path) },
+  }
+}
+```
+
+## まとめ
+
+最終的には次のような設定になる。
+
+```lua
+---@param path string
+local function trim_path(path)
+  return string.gsub(path, "(.*[/\\])(.*)", "%2")
+end
+
+---@class Icon
+---@field color? string
+---@field icon string
+
+---@type { [string]: Icon }
+local process_icons = {
+  docker = {
+    color = "#1d63ed",
+    icon = wezterm.nerdfonts.md_docker,
+  },
+  go = {
+    color = "#79d4fd",
+    icon = wezterm.nerdfonts.md_language_go,
+  },
+  nvim = {
+    color = "#00b952",
+    icon = wezterm.nerdfonts.custom_neovim,
+  },
+  zsh = {
+    icon = wezterm.nerdfonts.dev_terminal,
+  },
+}
+
+wezterm.on("format-tab-title", function(tab, _, _, _, _, _)
+  local pane = tab.active_pane
+  local process_name = trim_path(pane.foreground_process_name)
+
+  if not pane.current_working_dir then
+    return process_name
+  end
+  ---@type string
+  local cwd = pane.current_working_dir.file_path
+  local text_color = tab.is_active and "#c0c0c0" or "#808080"
+
+  return {
+    {
+      Foreground = {
+        Color = text_color,
+      },
+    },
+    {
+      Text = utf8.char(0x200B),
+    },
+    {
+      Foreground = {
+        Color = tab.is_active and process_icons[process_name].color or text_color,
+      },
+    },
+    { Text = process_icons[process_name].icon or process_name .. " on" },
+    {
+      Foreground = {
+        Color = text_color,
+      },
+    },
+    { Text = " " .. trim_path(cwd) },
+  }
+end)
+```
+
+[^default-color]: [wezterm/config/src/color.rs at 6f375e29a2c4d70b8b51956edd494693196c6692 · wez/wezterm](https://github.com/wez/wezterm/blob/6f375e29a2c4d70b8b51956edd494693196c6692/config/src/color.rs#L484-L505)
+[^format-tab-title]: [format-tab-title - Wez's Terminal Emulator](https://wezfurlong.org/wezterm/config/lua/window-events/format-tab-title.html)
+[^paneinformation]: [object: PaneInformation - Wez's Terminal Emulator](https://wezfurlong.org/wezterm/config/lua/PaneInformation.html)
+[^tabinformation]: [object: TabInformation - Wez's Terminal Emulator](https://wezfurlong.org/wezterm/config/lua/TabInformation.html)

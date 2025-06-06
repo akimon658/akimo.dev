@@ -1,0 +1,3 @@
+transformImages:
+  format: png
+  resize: [1200, 630]
