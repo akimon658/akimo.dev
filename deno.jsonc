@@ -3,6 +3,7 @@
     "lume": "echo \"import 'lume/cli.ts'\" | deno run -A -",
     "build": "deno task lume",
     "serve": "deno task lume -s --port 4000",
+    "minify-attrs": "deno run -A jsr:@akimon658/minify-attrs@0.2.3 public",
   },
   "compilerOptions": {
     "jsx": "react-jsx",

@@ -66,7 +66,8 @@
     "npm:tree-sitter-javascript@0.23.1": "0.23.1",
     "npm:tree-sitter-json@0.24.8": "0.24.8",
     "npm:tree-sitter-typescript@0.23.2": "0.23.2",
-    "npm:tree-sitter@0.22.4": "0.22.4"
+    "npm:tree-sitter@0.22.4": "0.22.4",
+    "npm:unified@11.0.5": "11.0.5"
   },
   "jsr": {
     "@davidbonnet/astring@1.8.6": {
@@ -427,6 +428,19 @@
     },
     "@types/prop-types@15.7.14": {
       "integrity": "sha512-gNMvNH49DJ7OJYv+KAKn0Xp45p8PLl6zo2YnvDIbTd4J6MER2BmWN49TG7n9LvkyihINxeKW8+3bfS2yDC9dzQ=="
+    },
+    "@types/react-dom@18.3.1": {
+      "integrity": "sha512-qW1Mfv8taImTthu4KoXgDfLuk4bydU6Q/TkADnDWWHwi4NX4BR+LWfTp2sVmTqRrsHvyDDTelgelxJ+SsejKKQ==",
+      "dependencies": [
+        "@types/react@18.3.18"
+      ]
+    },
+    "@types/react@18.3.12": {
+      "integrity": "sha512-D2wOSq/d6Agt28q7rSI3jhU7G6aiuzljDGZ2hTZHIkrTLUI+AF3WMeKkEZ9nN2fkBAlcktT6vcZjDFiIhMYEQw==",
+      "dependencies": [
+        "@types/prop-types",
+        "csstype"
+      ]
     },
     "@types/react@18.3.18": {
       "integrity": "sha512-t4yC+vtgnkYjNSKlFx1jkAhH8LgTo2N/7Qvi83kdEaUtMDiwpbLAktKDaAMlRcJ5eSxZkH74eEGt1ky31d7kfQ==",

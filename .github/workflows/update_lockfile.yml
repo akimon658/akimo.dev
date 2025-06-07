@@ -48,6 +48,7 @@ jobs:
               exit 1
             fi
           done
+          deno task minify-selectors
 
       - name: Commit changes
         run: |
