@@ -39,7 +39,7 @@
     "npm:@types/react-dom@18.3.1": "18.3.1",
     "npm:@types/react@18.3.12": "18.3.12",
     "npm:autoprefixer@10.4.21": "10.4.21_postcss@8.5.3",
-    "npm:cssnano-preset-advanced@7.0.6": "7.0.6_postcss@8.5.3",
+    "npm:cssnano-preset-advanced@7.0.7": "7.0.7_postcss@8.5.3",
     "npm:cssnano@7.0.7": "7.0.7_postcss@8.5.3",
     "npm:escape-html@1.0.3": "1.0.3",
     "npm:estree-walker@3.0.3": "3.0.3",
@@ -702,8 +702,8 @@
       "integrity": "sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==",
       "bin": true
     },
-    "cssnano-preset-advanced@7.0.6_postcss@8.5.3": {
-      "integrity": "sha512-wk/YPSv965EjpPNEGteiXZ32BKilJcYNnX4EGUd/AriVGgHL/y59uaWVJ/ZDx69jCNUrmwiBzioCV+SG5wk3PQ==",
+    "cssnano-preset-advanced@7.0.7_postcss@8.5.3": {
+      "integrity": "sha512-uBLTct5OBy3r+WL8zB+RAUsok2E5eWdi3xvrotI0aS/E3KvEKKyaXIlAXLHUI0MSopHXJEuUX4jMTr9VkUtWkA==",
       "dependencies": [
         "autoprefixer",
         "browserslist",
@@ -3077,7 +3077,7 @@
       "npm:@tree-sitter-grammars/tree-sitter-markdown@0.3.2",
       "npm:@tree-sitter-grammars/tree-sitter-yaml@0.7.0",
       "npm:@types/react@18.3.18",
-      "npm:cssnano-preset-advanced@7.0.6",
+      "npm:cssnano-preset-advanced@7.0.7",
       "npm:cssnano@7.0.7",
       "npm:escape-html@1.0.3",
       "npm:postcss-variable-compress@3.0.0",
