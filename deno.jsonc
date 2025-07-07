@@ -17,7 +17,7 @@
     "@tailwindcss/typography": "npm:@tailwindcss/typography@0.5.16",
     "@tree-sitter-grammars/tree-sitter-lua": "npm:@tree-sitter-grammars/tree-sitter-lua@0.2.0",
     "@tree-sitter-grammars/tree-sitter-markdown": "npm:@tree-sitter-grammars/tree-sitter-markdown@0.3.2",
-    "@tree-sitter-grammars/tree-sitter-yaml": "npm:@tree-sitter-grammars/tree-sitter-yaml@0.7.0",
+    "@tree-sitter-grammars/tree-sitter-yaml": "npm:@tree-sitter-grammars/tree-sitter-yaml@0.7.1",
     "cssnano": "npm:cssnano@7.0.7",
     "cssnano-preset-advanced": "npm:cssnano-preset-advanced@7.0.7",
     "escape-html": "npm:escape-html@1.0.3",
