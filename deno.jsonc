@@ -21,7 +21,7 @@
     "cssnano": "npm:cssnano@7.0.6",
     "cssnano-preset-advanced": "npm:cssnano-preset-advanced@7.0.6",
     "escape-html": "npm:escape-html@1.0.3",
-    "lume/": "https://deno.land/x/lume@v2.5.2/",
+    "lume/": "https://deno.land/x/lume@v2.5.3/",
     "postcss-variable-compress": "npm:postcss-variable-compress@3.0.0",
     "rehype-external-links": "npm:rehype-external-links@3.0.0",
     "rehype-raw": "npm:rehype-raw@7.0.0",
