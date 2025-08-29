@@ -1,7 +1,2 @@
 _cache/
 public/
-.terraform/
-
-*.tfbackend
-terraform.tfstate*
-terraform.tfvars
