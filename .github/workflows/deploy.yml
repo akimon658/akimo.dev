@@ -51,6 +51,8 @@ jobs:
           restore-keys: lume-
 
       - name: Build
+        env:
+          TZ: Asia/Tokyo
         run: |
           deno task lume
           touch public/.nojekyll
