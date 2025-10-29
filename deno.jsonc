@@ -19,7 +19,7 @@
     "@tree-sitter-grammars/tree-sitter-markdown": "npm:@tree-sitter-grammars/tree-sitter-markdown@0.3.2",
     "@tree-sitter-grammars/tree-sitter-yaml": "npm:@tree-sitter-grammars/tree-sitter-yaml@0.7.1",
     "cssnano": "npm:cssnano@7.0.7",
-    "cssnano-preset-advanced": "npm:cssnano-preset-advanced@7.0.7",
+    "cssnano-preset-advanced": "npm:cssnano-preset-advanced@7.0.10",
     "escape-html": "npm:escape-html@1.0.3",
     "lume/": "https://deno.land/x/lume@v2.5.3/",
     "postcss-variable-compress": "npm:postcss-variable-compress@3.0.0",
