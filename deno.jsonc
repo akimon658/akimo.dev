@@ -14,7 +14,7 @@
     "verbatimModuleSyntax": true
   },
   "imports": {
-    "@tailwindcss/typography": "npm:@tailwindcss/typography@0.5.16",
+    "@tailwindcss/typography": "npm:@tailwindcss/typography@0.5.19",
     "@tree-sitter-grammars/tree-sitter-lua": "npm:@tree-sitter-grammars/tree-sitter-lua@0.2.0",
     "@tree-sitter-grammars/tree-sitter-markdown": "npm:@tree-sitter-grammars/tree-sitter-markdown@0.3.2",
     "@tree-sitter-grammars/tree-sitter-yaml": "npm:@tree-sitter-grammars/tree-sitter-yaml@0.7.1",
