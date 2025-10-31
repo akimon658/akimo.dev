@@ -40,7 +40,7 @@
     "npm:@types/react@18.3.12": "18.3.12",
     "npm:autoprefixer@10.4.21": "10.4.21_postcss@8.5.3",
     "npm:cssnano-preset-advanced@7.0.10": "7.0.10_postcss@8.5.3",
-    "npm:cssnano@7.0.7": "7.0.7_postcss@8.5.3",
+    "npm:cssnano@7.1.2": "7.1.2_postcss@8.5.3",
     "npm:escape-html@1.0.3": "1.0.3",
     "npm:estree-walker@3.0.3": "3.0.3",
     "npm:ico-endec@0.1.6": "0.1.6",
@@ -759,8 +759,8 @@
         "postcss"
       ]
     },
-    "cssnano@7.0.7_postcss@8.5.3": {
-      "integrity": "sha512-evKu7yiDIF7oS+EIpwFlMF730ijRyLFaM2o5cTxRGJR9OKHKkc+qP443ZEVR9kZG0syaAJJCPJyfv5pbrxlSng==",
+    "cssnano@7.1.2_postcss@8.5.3": {
+      "integrity": "sha512-HYOPBsNvoiFeR1eghKD5C3ASm64v9YVyJB4Ivnl2gqKoQYvjjN/G0rztvKQq8OxocUtC6sjqY8jwYngIB4AByA==",
       "dependencies": [
         "cssnano-preset-default",
         "lilconfig",
@@ -3085,7 +3085,7 @@
       "npm:@tree-sitter-grammars/tree-sitter-yaml@0.7.1",
       "npm:@types/react@18.3.18",
       "npm:cssnano-preset-advanced@7.0.10",
-      "npm:cssnano@7.0.7",
+      "npm:cssnano@7.1.2",
       "npm:escape-html@1.0.3",
       "npm:postcss-variable-compress@3.0.0",
       "npm:react@18.3.1",
