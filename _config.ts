@@ -1,6 +1,8 @@
 import Lua from "@tree-sitter-grammars/tree-sitter-lua"
 import Markdown from "@tree-sitter-grammars/tree-sitter-markdown"
 import YAML from "@tree-sitter-grammars/tree-sitter-yaml"
+import cssnano from "cssnano"
+import advancedPreset from "cssnano-preset-advanced"
 import escapeHtml from "escape-html"
 import lume from "lume/mod.ts"
 import googleFonts from "lume/plugins/google_fonts.ts"
@@ -9,10 +11,12 @@ import mdx from "lume/plugins/mdx.ts"
 import metas from "lume/plugins/metas.ts"
 import minifyHTML from "lume/plugins/minify_html.ts"
 import multilanguage from "lume/plugins/multilanguage.ts"
+import postcss from "lume/plugins/postcss.ts"
 import redirects from "lume/plugins/redirects.ts"
 import robots from "lume/plugins/robots.ts"
 import sitemap from "lume/plugins/sitemap.ts"
 import transformImages from "lume/plugins/transform_images.ts"
+import variableCompress from "postcss-variable-compress"
 import rehypeExternalLinks from "rehype-external-links"
 import rehypeRaw from "rehype-raw"
 import Parser, { type Language } from "tree-sitter"
@@ -141,6 +145,18 @@ site.use(minifyHTML())
 site.use(redirects())
 
 site.use(tailwindcss())
+site.use(postcss({
+  plugins: [
+    cssnano({
+      preset: advancedPreset({
+        discardComments: {
+          removeAll: true,
+        },
+      }),
+    }),
+    variableCompress,
+  ],
+}))
 site.use(robots({
   rules: [
     {
