@@ -141,7 +141,6 @@ site.use(mdx({
     ],
   ],
 }))
-site.use(minifyHTML())
 site.use(redirects())
 
 site.use(tailwindcss())
@@ -176,5 +175,6 @@ site.use(sitemap({
   query: "externalUrl=undefined",
 }))
 site.use(metas())
+site.use(minifyHTML())
 
 export default site
