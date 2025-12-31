@@ -1,5 +1,4 @@
+@import "tailwindcss";
 @import "./_vscode.css";
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@plugin "@tailwindcss/typography";
+@config "./_tailwind.config.ts";

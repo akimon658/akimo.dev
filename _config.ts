@@ -1,3 +1,9 @@
+import Lua from "@tree-sitter-grammars/tree-sitter-lua"
+import Markdown from "@tree-sitter-grammars/tree-sitter-markdown"
+import YAML from "@tree-sitter-grammars/tree-sitter-yaml"
+import cssnano from "cssnano"
+import advancedPreset from "cssnano-preset-advanced"
+import escapeHtml from "escape-html"
 import lume from "lume/mod.ts"
 import googleFonts from "lume/plugins/google_fonts.ts"
 import jsx from "lume/plugins/jsx.ts"
@@ -9,25 +15,18 @@ import postcss from "lume/plugins/postcss.ts"
 import redirects from "lume/plugins/redirects.ts"
 import robots from "lume/plugins/robots.ts"
 import sitemap from "lume/plugins/sitemap.ts"
-import tailwindcss from "lume/plugins/tailwindcss.ts"
 import transformImages from "lume/plugins/transform_images.ts"
-import cssnano from "cssnano"
-import advancedPreset from "cssnano-preset-advanced"
-import escapeHtml from "escape-html"
 import variableCompress from "postcss-variable-compress"
 import rehypeExternalLinks from "rehype-external-links"
 import rehypeRaw from "rehype-raw"
-import typography from "@tailwindcss/typography"
 import Parser, { type Language } from "tree-sitter"
 import Bash from "tree-sitter-bash"
-import JSON from "tree-sitter-json"
 import Go from "tree-sitter-go"
-import Lua from "@tree-sitter-grammars/tree-sitter-lua"
-import Markdown from "@tree-sitter-grammars/tree-sitter-markdown"
-import YAML from "@tree-sitter-grammars/tree-sitter-yaml"
 import HTML from "tree-sitter-html"
 import JavaScript from "tree-sitter-javascript"
+import JSON from "tree-sitter-json"
 import TypeScript from "tree-sitter-typescript"
+import tailwindcss from "./src/_plugins/tailwindcss.ts"
 
 const site = lume({
   dest: "./public",
@@ -142,45 +141,9 @@ site.use(mdx({
     ],
   ],
 }))
-site.use(metas())
-site.use(minifyHTML())
 site.use(redirects())
 
-site.use(tailwindcss({
-  options: {
-    plugins: [typography],
-    theme: {
-      fontFamily: {
-        sans: ["Atkinson Hyperlegible", "sans-serif"],
-        mono: ["monospace"],
-      },
-      extend: {
-        colors: {
-          "vsc-back": "#1f1f1f",
-          "vsc-front": "#d4d4d4",
-        },
-        content: {
-          "open-in-new": "url('/icon/open_in_new_16dp_2563EB.svg')",
-          "open-in-new-dark": "url('/icon/open_in_new_16dp_60A5FA.svg')",
-          "open-in-new-gray": "url('/icon/open_in_new_16dp_6B7280.svg')",
-          "open-in-new-gray-dark": "url('/icon/open_in_new_16dp_9CA3AF.svg')",
-        },
-        typography: (theme: (s: string) => string) => ({
-          DEFAULT: {
-            css: {
-              "code:not(pre > code)": {
-                backgroundColor: theme("colors.gray.100"),
-                borderRadius: "0.25rem",
-                margin: "0.125rem",
-                padding: "0.125rem 0.25rem",
-              },
-            },
-          },
-        }),
-      },
-    },
-  },
-}))
+site.use(tailwindcss())
 site.use(postcss({
   plugins: [
     cssnano({
@@ -201,9 +164,8 @@ site.use(robots({
     },
   ],
 }))
-site.use(transformImages({
-  extensions: [".jpg", ".jpeg", ".png", ".webp", ".gif"],
-}))
+site.use(transformImages())
+site.add("/img")
 
 site.use(multilanguage({
   defaultLanguage: "ja",
@@ -212,5 +174,7 @@ site.use(multilanguage({
 site.use(sitemap({
   query: "externalUrl=undefined",
 }))
+site.use(metas())
+site.use(minifyHTML())
 
 export default site

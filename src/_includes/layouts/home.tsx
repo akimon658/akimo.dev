@@ -43,49 +43,53 @@ export default (data: Lume.Data, _helpers: Lume.Helpers) => {
       <div className="
         flex
         flex-col
+        gap-8
         items-center
         justify-center
         md:flex-row
+        md:gap-14
         mt-8
       ">
         <img
           src="/img/animated/icon.webp"
           height="200"
           width="200"
-          className="md:mr-14"
         />
         <div className="
+          flex
+          flex-col
+          gap-2
           max-w-80
-          md:mt-0
-          mt-8
           sm:max-w-none
           text-xl
         ">
-          <h1 className="
+          <div>
+            <h1 className="
             font-bold
             text-2xl
           ">
-            {data.author_name}
-          </h1>
-          <div className="
+              {data.author_name}
+            </h1>
+            <div className="
             dark:text-gray-400
             text-gray-500
           ">
-            @akimon658
+              @akimon658
+            </div>
           </div>
-          <div className="mt-2">
+          <div>
             {data.author_affiliation}
           </div>
           <div className="
             flex
-            mt-4
+            gap-4
           ">
             {icons.map((icon) => (
               <comp.Link
+                className="" // Prevent open-in-new icon from appearing
                 key={icon.href}
                 href={icon.href}
                 title={icon.title}
-                className="mr-4"
               >
                 <picture className="h-6">
                   <source
