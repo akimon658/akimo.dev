@@ -2725,6 +2725,7 @@
     "https://cdn.jsdelivr.net/gh/lumeland/lume@3.1.3/deps/vento.ts": "154830128b1efcdfffc14290194b13a1a7346a23466365dc4751982d01afdd65",
     "https://cdn.jsdelivr.net/gh/lumeland/lume@3.1.3/deps/xml.ts": "3067678f3a9791bbd0fc14efe581e8be82c37b9b18bb0ec4eabf6a87769badea",
     "https://cdn.jsdelivr.net/gh/lumeland/lume@3.1.3/deps/yaml.ts": "ee79a110ac7f97ac7821792246ff29a9a4831d35ecc96f3dd543dc7a4ffd70c9",
+    "https://cdn.jsdelivr.net/gh/lumeland/lume@3.1.3/lint.ts": "41c1bb62434eb9d8e39a255c0dd9cd10734451dd208e3263b5e1c9835732556e",
     "https://cdn.jsdelivr.net/gh/lumeland/lume@3.1.3/middlewares/basic_auth.ts": "c18f0da9f88be4581e5e3da99214fd7abdad829ab00dbdd2fb3116f1f876add2",
     "https://cdn.jsdelivr.net/gh/lumeland/lume@3.1.3/middlewares/logger.ts": "c96f1a9f9d5757555b6f141865ce8551ac176f90c8ee3e9ad797b2b400a9a567",
     "https://cdn.jsdelivr.net/gh/lumeland/lume@3.1.3/middlewares/no_cache.ts": "0119e3ae3a596ab12c42df693b93e5b03dd9608e289d862242751a9739438f35",
