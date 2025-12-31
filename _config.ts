@@ -12,7 +12,6 @@ import multilanguage from "lume/plugins/multilanguage.ts"
 import redirects from "lume/plugins/redirects.ts"
 import robots from "lume/plugins/robots.ts"
 import sitemap from "lume/plugins/sitemap.ts"
-import tailwindcss from "lume/plugins/tailwindcss.ts"
 import transformImages from "lume/plugins/transform_images.ts"
 import rehypeExternalLinks from "rehype-external-links"
 import rehypeRaw from "rehype-raw"
@@ -23,6 +22,7 @@ import HTML from "tree-sitter-html"
 import JavaScript from "tree-sitter-javascript"
 import JSON from "tree-sitter-json"
 import TypeScript from "tree-sitter-typescript"
+import tailwindcss from "./src/_plugins/tailwindcss.ts"
 
 const site = lume({
   dest: "./public",

@@ -86,6 +86,7 @@ export default (data: Lume.Data, _helpers: Lume.Helpers) => {
           ">
             {icons.map((icon) => (
               <comp.Link
+                className="" // Prevent open-in-new icon from appearing
                 key={icon.href}
                 href={icon.href}
                 title={icon.title}
