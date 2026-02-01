@@ -20,14 +20,14 @@ jobs:
 
 
       - name: Configure Deno cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.cache/deno
           key: deno-${{ hashFiles('deno.lock') }}
           restore-keys: deno-
 
       - name: Configure build cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: _cache
           key: lume-${{ hashFiles('src/**', '_config.ts') }}
