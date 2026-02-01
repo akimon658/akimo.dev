@@ -4,7 +4,7 @@
     "jsr:@minify-html/deno@0.18.1": "0.18.1",
     "jsr:@std/cli@1.0.25": "1.0.25",
     "jsr:@std/cli@^1.0.25": "1.0.25",
-    "jsr:@std/collections@^1.1.3": "1.1.3",
+    "jsr:@std/collections@^1.1.3": "1.1.5",
     "jsr:@std/crypto@1.0.5": "1.0.5",
     "jsr:@std/encoding@1.0.10": "1.0.10",
     "jsr:@std/encoding@^1.0.10": "1.0.10",
@@ -23,7 +23,7 @@
     "jsr:@std/path@1.1.4": "1.1.4",
     "jsr:@std/path@^1.1.4": "1.1.4",
     "jsr:@std/semver@1.0.7": "1.0.7",
-    "jsr:@std/streams@^1.0.16": "1.0.16",
+    "jsr:@std/streams@^1.0.16": "1.0.17",
     "jsr:@std/toml@1.0.11": "1.0.11",
     "jsr:@std/toml@^1.0.3": "1.0.11",
     "jsr:@std/yaml@1.0.10": "1.0.10",
@@ -33,7 +33,7 @@
     "npm:@tailwindcss/node@4.1.18": "4.1.18",
     "npm:@tailwindcss/oxide@4.1.18": "4.1.18",
     "npm:@tailwindcss/typography@0.5.19": "0.5.19_tailwindcss@4.1.18",
-    "npm:@tree-sitter-grammars/tree-sitter-lua@0.2.0": "0.2.0_tree-sitter@0.22.4",
+    "npm:@tree-sitter-grammars/tree-sitter-lua@0.4.1": "0.4.1_tree-sitter@0.22.4",
     "npm:@tree-sitter-grammars/tree-sitter-markdown@0.3.2": "0.3.2_tree-sitter@0.22.4",
     "npm:@tree-sitter-grammars/tree-sitter-yaml@0.7.1": "0.7.1_tree-sitter@0.22.4",
     "npm:autoprefixer@10.4.23": "10.4.23_postcss@8.5.6",
@@ -78,8 +78,8 @@
         "jsr:@std/internal"
       ]
     },
-    "@std/collections@1.1.3": {
-      "integrity": "bf8b0818886df6a32b64c7d3b037a425111f28278d69fd0995aeb62777c986b0"
+    "@std/collections@1.1.5": {
+      "integrity": "c37cc6bbbbf90fec3e782535a46c9c8a3210f19118c61add71fcea86b0ffd491"
     },
     "@std/crypto@1.0.5": {
       "integrity": "0dcfbb319fe0bba1bd3af904ceb4f948cde1b92979ec1614528380ed308a3b40"
@@ -148,8 +148,8 @@
     "@std/semver@1.0.7": {
       "integrity": "7d5f65391762dc4358abde80fc3354086ddb40101f140295e60f290c138887d0"
     },
-    "@std/streams@1.0.16": {
-      "integrity": "85030627befb1767c60d4f65cb30fa2f94af1d6ee6e5b2515b76157a542e89c4"
+    "@std/streams@1.0.17": {
+      "integrity": "7859f3d9deed83cf4b41f19223d4a67661b3d3819e9fc117698f493bf5992140"
     },
     "@std/toml@1.0.11": {
       "integrity": "e084988b872ca4bad6aedfb7350f6eeed0e8ba88e9ee5e1590621c5b5bb8f715",
@@ -608,11 +608,14 @@
         "tailwindcss"
       ]
     },
-    "@tree-sitter-grammars/tree-sitter-lua@0.2.0_tree-sitter@0.22.4": {
-      "integrity": "sha512-VPk971J3hBUNr7CpZJvgTU5UmEkW8iMQ0Sk6br4O3xL00XFEO4PCjSSGeYYakRgPAJiIR8J594UcBK+7ilBvqw==",
+    "@tree-sitter-grammars/tree-sitter-lua@0.4.1_tree-sitter@0.22.4": {
+      "integrity": "sha512-EwagFaU6ZveVk18/Y8qUhZkkiBKnQ7dSCHbm//TUroLVKy3i1rOYGy/cNHtSkAb1eDvS1HhCLybH2S541Cya/g==",
       "dependencies": [
         "node-addon-api",
         "node-gyp-build",
+        "tree-sitter"
+      ],
+      "optionalPeers": [
         "tree-sitter"
       ],
       "scripts": true
@@ -2911,7 +2914,7 @@
   "workspace": {
     "dependencies": [
       "npm:@tailwindcss/typography@0.5.19",
-      "npm:@tree-sitter-grammars/tree-sitter-lua@0.2.0",
+      "npm:@tree-sitter-grammars/tree-sitter-lua@0.4.1",
       "npm:@tree-sitter-grammars/tree-sitter-markdown@0.3.2",
       "npm:@tree-sitter-grammars/tree-sitter-yaml@0.7.1",
       "npm:cssnano-preset-advanced@7.0.10",
