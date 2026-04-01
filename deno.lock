@@ -37,7 +37,7 @@
     "npm:@tree-sitter-grammars/tree-sitter-markdown@0.3.2": "0.3.2_tree-sitter@0.22.4",
     "npm:@tree-sitter-grammars/tree-sitter-yaml@0.7.1": "0.7.1_tree-sitter@0.22.4",
     "npm:autoprefixer@10.4.23": "10.4.23_postcss@8.5.6",
-    "npm:cssnano-preset-advanced@7.0.10": "7.0.10_postcss@8.5.6",
+    "npm:cssnano-preset-advanced@7.0.12": "7.0.12_postcss@8.5.6",
     "npm:cssnano@7.1.4": "7.1.4_postcss@8.5.6",
     "npm:esbuild@0.27.2": "0.27.2",
     "npm:escape-html@1.0.3": "1.0.3",
@@ -712,6 +712,18 @@
       ],
       "bin": true
     },
+    "autoprefixer@10.4.27_postcss@8.5.6": {
+      "integrity": "sha512-NP9APE+tO+LuJGn7/9+cohklunJsXWiaWEfV3si4Gi/XHDwVNgkwr1J3RQYFIvPy76GmJ9/bW8vyoU1LcxwKHA==",
+      "dependencies": [
+        "browserslist",
+        "caniuse-lite",
+        "fraction.js",
+        "picocolors",
+        "postcss",
+        "postcss-value-parser"
+      ],
+      "bin": true
+    },
     "bail@2.0.2": {
       "integrity": "sha512-0xO6mYd7JB2YesxDKplafRpsiOzPt9V02ddPCLbY1xYGPOX24NTyN50qnUxgCPcSoYMhKpAuBTjQoRZCAkUDRw=="
     },
@@ -806,10 +818,10 @@
       "integrity": "sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==",
       "bin": true
     },
-    "cssnano-preset-advanced@7.0.10_postcss@8.5.6": {
-      "integrity": "sha512-lfsKxX4H6WS7BbNyDxkGOu2VgN4bbHQpY8llA3i3SJ9ozAPJ1MHq265Aw0aslM161qiS0zhCHaC6zRcEbNAgUA==",
+    "cssnano-preset-advanced@7.0.12_postcss@8.5.6": {
+      "integrity": "sha512-S+UCfEMBCaYqNmjY+yCTNh4ur+B83z5qpwkzUMER6kVpdQ5CBUxIkALZGhp2KPP3M4VefRCIBMqJ6Z0PFMwvEA==",
       "dependencies": [
-        "autoprefixer",
+        "autoprefixer@10.4.27_postcss@8.5.6",
         "browserslist",
         "cssnano-preset-default",
         "postcss",
@@ -2914,7 +2926,7 @@
       "npm:@tree-sitter-grammars/tree-sitter-lua@0.2.0",
       "npm:@tree-sitter-grammars/tree-sitter-markdown@0.3.2",
       "npm:@tree-sitter-grammars/tree-sitter-yaml@0.7.1",
-      "npm:cssnano-preset-advanced@7.0.10",
+      "npm:cssnano-preset-advanced@7.0.12",
       "npm:cssnano@7.1.4",
       "npm:escape-html@1.0.3",
       "npm:postcss-variable-compress@3.0.0",
