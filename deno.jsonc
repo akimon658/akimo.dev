@@ -18,8 +18,7 @@
     "jsxImportSource": "lume",
     "types": [
       "lume/types.ts"
-    ],
-    "verbatimModuleSyntax": true
+    ]
   },
   "imports": {
     "@tailwindcss/typography": "npm:@tailwindcss/typography@0.5.19",
@@ -29,8 +28,8 @@
     "cssnano": "npm:cssnano@7.1.4",
     "cssnano-preset-advanced": "npm:cssnano-preset-advanced@7.0.12",
     "escape-html": "npm:escape-html@1.0.3",
-    "lume/": "https://cdn.jsdelivr.net/gh/lumeland/lume@3.1.3/",
-    "lume/jsx-runtime": "https://cdn.jsdelivr.net/gh/oscarotero/ssx@0.1.14/jsx-runtime.ts",
+    "lume/": "https://cdn.jsdelivr.net/gh/lumeland/lume@3.3.1/",
+    "lume/jsx-runtime": "https://cdn.jsdelivr.net/gh/oscarotero/ssx@0.1.15/jsx-runtime.ts",
     "postcss-variable-compress": "npm:postcss-variable-compress@3.0.0",
     "rehype-external-links": "npm:rehype-external-links@3.0.0",
     "rehype-raw": "npm:rehype-raw@7.0.0",
@@ -80,11 +79,14 @@
   ],
   "lint": {
     "plugins": [
-      "https://cdn.jsdelivr.net/gh/lumeland/lume@3.1.3/lint.ts"
+      "https://cdn.jsdelivr.net/gh/lumeland/lume@3.3.1/lint.ts"
     ],
     "rules": {
       "exclude": [
         "no-import-prefix"
+      ],
+      "include": [
+        "verbatim-module-syntax"
       ]
     }
   }
