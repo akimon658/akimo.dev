@@ -3,10 +3,6 @@
   "extends": [
     "config:base",
     "schedule:monthly",
-    ":disableDependencyDashboard",
-    "github>Omochice/renovate-config:deno"
-  ],
-  "gitIgnoredAuthors": [
-    "41898282+github-actions[bot]@users.noreply.github.com"
+    ":disableDependencyDashboard"
   ]
 }
