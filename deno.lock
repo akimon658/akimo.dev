@@ -37,7 +37,7 @@
     "npm:@tailwindcss/node@4.3.3": "4.3.3",
     "npm:@tailwindcss/oxide@4.3.3": "4.3.3",
     "npm:@tailwindcss/typography@0.5.19": "0.5.19_tailwindcss@4.3.3",
-    "npm:@tree-sitter-grammars/tree-sitter-lua@0.2.0": "0.2.0_tree-sitter@0.22.4",
+    "npm:@tree-sitter-grammars/tree-sitter-lua@0.4.1": "0.4.1_tree-sitter@0.25.1",
     "npm:@tree-sitter-grammars/tree-sitter-markdown@0.3.2": "0.3.2_tree-sitter@0.22.4",
     "npm:@tree-sitter-grammars/tree-sitter-yaml@0.7.1": "0.7.1_tree-sitter@0.22.4",
     "npm:autoprefixer@10.5.4": "10.5.4_postcss@8.5.26",
@@ -642,12 +642,15 @@
         "tailwindcss"
       ]
     },
-    "@tree-sitter-grammars/tree-sitter-lua@0.2.0_tree-sitter@0.22.4": {
-      "integrity": "sha512-VPk971J3hBUNr7CpZJvgTU5UmEkW8iMQ0Sk6br4O3xL00XFEO4PCjSSGeYYakRgPAJiIR8J594UcBK+7ilBvqw==",
+    "@tree-sitter-grammars/tree-sitter-lua@0.4.1_tree-sitter@0.25.1": {
+      "integrity": "sha512-EwagFaU6ZveVk18/Y8qUhZkkiBKnQ7dSCHbm//TUroLVKy3i1rOYGy/cNHtSkAb1eDvS1HhCLybH2S541Cya/g==",
       "dependencies": [
         "node-addon-api",
         "node-gyp-build",
-        "tree-sitter@0.22.4"
+        "tree-sitter@0.25.1"
+      ],
+      "optionalPeers": [
+        "tree-sitter@0.25.1"
       ],
       "scripts": true
     },
@@ -2832,7 +2835,7 @@
   "workspace": {
     "dependencies": [
       "npm:@tailwindcss/typography@0.5.19",
-      "npm:@tree-sitter-grammars/tree-sitter-lua@0.2.0",
+      "npm:@tree-sitter-grammars/tree-sitter-lua@0.4.1",
       "npm:@tree-sitter-grammars/tree-sitter-markdown@0.3.2",
       "npm:@tree-sitter-grammars/tree-sitter-yaml@0.7.1",
       "npm:cssnano-preset-advanced@7.0.12",
