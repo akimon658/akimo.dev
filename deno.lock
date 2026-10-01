@@ -42,7 +42,7 @@
     "npm:@tree-sitter-grammars/tree-sitter-yaml@0.7.1": "0.7.1_tree-sitter@0.22.4",
     "npm:autoprefixer@10.5.4": "10.5.4_postcss@8.5.26",
     "npm:cssnano-preset-advanced@7.0.12": "7.0.12_postcss@8.5.26",
-    "npm:cssnano@7.1.4": "7.1.4_postcss@8.5.26",
+    "npm:cssnano@7.1.9": "7.1.9_postcss@8.5.26",
     "npm:esbuild@0.28.2": "0.28.2",
     "npm:escape-html@1.0.3": "1.0.3",
     "npm:ico-endec@0.1.6": "0.1.6",
@@ -735,7 +735,7 @@
       "integrity": "sha512-MaU0U/za7N3r6brxD4YB/l4NSrFzLPlANv6wEuQVaIPlD3L4W9rFcQPbL/EilY9BHhHvhfcz3gInDLrEtWT4EA==",
       "dependencies": [
         "browserslist",
-        "caniuse-lite",
+        "caniuse-lite@1.0.30001810",
         "fraction.js",
         "picocolors",
         "postcss",
@@ -746,18 +746,18 @@
     "bail@2.0.2": {
       "integrity": "sha512-0xO6mYd7JB2YesxDKplafRpsiOzPt9V02ddPCLbY1xYGPOX24NTyN50qnUxgCPcSoYMhKpAuBTjQoRZCAkUDRw=="
     },
-    "baseline-browser-mapping@2.11.22": {
-      "integrity": "sha512-pWc4w51fBFd7mav43/zKRC+RI6f4yfzQoVlfvE8dECePyfkn1bzLp01Fj0QACcyCZyFhiEMyD2qScfKRWgWibA==",
+    "baseline-browser-mapping@2.11.26": {
+      "integrity": "sha512-GLQdD3y6UF8iVuMJl5fHgE4jdn/ua7n+toKfLgNlg3BqQtOZjpy68T8Tup8/wGWZCDlm7KMg7tPb4MPn7oN0TQ==",
       "bin": true
     },
     "boolbase@1.0.0": {
       "integrity": "sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww=="
     },
-    "browserslist@4.28.9": {
-      "integrity": "sha512-EWazOblFYUvlGZcfGhPUPmYh3nikUxBVb+y9MJun5f3hBi812X+8MSQTujLBtgK3cf51fJWbWfOjyeO954d+Eg==",
+    "browserslist@4.29.3": {
+      "integrity": "sha512-1R4kiYKXGViqEN0CnoDrXc1StD9niAwu+j2dukWzrD4bJgsD4lDmEp0CRbc6E/vYJIfTHwPmwyaKtVSudICdPA==",
       "dependencies": [
         "baseline-browser-mapping",
-        "caniuse-lite",
+        "caniuse-lite@1.0.30001813",
         "electron-to-chromium",
         "node-releases",
         "update-browserslist-db"
@@ -768,13 +768,16 @@
       "integrity": "sha512-bsTwuIg/BZZK/vreVTYYbSWoe2F+71P7K5QGEX+pT250DZbfU1MQ5prOKpPR+LL6uWKK3KMwMCAS74QB3Um1uw==",
       "dependencies": [
         "browserslist",
-        "caniuse-lite",
+        "caniuse-lite@1.0.30001810",
         "lodash.memoize",
         "lodash.uniq"
       ]
     },
     "caniuse-lite@1.0.30001810": {
       "integrity": "sha512-TITQPUkaz+aVk5GL6NhOdwk1aEaNTSDPsGFWrTuhKGtjTF70jL/Oht2W4c6rXUe5fu7Ie19VIahAXHIIiWWNeg=="
+    },
+    "caniuse-lite@1.0.30001813": {
+      "integrity": "sha512-zfjJo4rM0+fUomGDBW/xcDjhIwz/210DGvip2MAMDZ8KHcRPnOHmEgHPZP0UHlZoxr8fYKVJOqcORhYQcG4FKQ=="
     },
     "ccount@2.0.1": {
       "integrity": "sha512-eyrF0jiFpY+3drT6383f1qhkbGsLSifNAjA61IUjZjmLCWjItY6LB9ft9YhoDgwfmclB2zhu51Lc7+95b8NRAg=="
@@ -892,8 +895,8 @@
         "postcss"
       ]
     },
-    "cssnano@7.1.4_postcss@8.5.26": {
-      "integrity": "sha512-T9PNS7y+5Nc9Qmu9mRONqfxG1RVY7Vuvky0XN6MZ+9hqplesTEwnj9r0ROtVuSwUVfaDhVlavuzWIVLUgm4hkQ==",
+    "cssnano@7.1.9_postcss@8.5.26": {
+      "integrity": "sha512-uPR75+5Dk/WJ/YSPR1/YDHdwMM9c5FsaARljfKWgeCKLKOtJ0we21xy/RcCjn53fZnD/f6yYEIZ8pu18+GnbNQ==",
       "dependencies": [
         "cssnano-preset-default",
         "lilconfig",
@@ -955,8 +958,8 @@
         "domhandler"
       ]
     },
-    "electron-to-chromium@1.5.427": {
-      "integrity": "sha512-n14zb3FdsChZ2BNobqNHAJMcP3ifFv4paox2LvCrfVAQcqGiSURgbJl+PfMpHVCNFkStnNc+RRVtPBTVW5PDgw=="
+    "electron-to-chromium@1.5.441": {
+      "integrity": "sha512-b84H5dyxtHtXYbJRJPLvbS+iud4ys2GVZ61BH7/9lJrfCcIL+Sk+Vh2AW6beaErTdstvjZLgEwkE2j0fZlmwRA=="
     },
     "enhanced-resolve@5.24.5": {
       "integrity": "sha512-L1l8TNvomm6UVW5B253AGxQagSQr+vGwhMlrrfRS2qmhx46AMpMVJKQYLvWYbysTMY8VoicOvzHzoHMbyzB+4A==",
@@ -1908,8 +1911,8 @@
       "integrity": "sha512-LA4ZjwlnUblHVgq0oBF3Jl/6h/Nvs5fzBLwdEF4nuxnFdsfajde4WfxtJr3CaiH+F6ewcIB/q4jQ4UzPyid+CQ==",
       "bin": true
     },
-    "node-releases@2.0.55": {
-      "integrity": "sha512-mIrE/Cw9y+9Au6dS5vDKDhQza9YvG6w+ZrS6X+ZzA7yFW/soAeaups4Qzn1bL6g5FVy8WtP79+0j82oPIbqRjQ=="
+    "node-releases@2.0.57": {
+      "integrity": "sha512-kQK9LGGFiHtrWiNhZtA7Qbw17AQz+dmsEKODRIVTXA9+e5MS/2gZEBhYJt13GrAz5/IOZKddH/0Z3TP/Zgo+yw=="
     },
     "nth-check@2.1.1": {
       "integrity": "sha512-lqjrjmaOoAnWfMmBPL+XNnynZh2+swxiX3WUE0s4yEHI6m+AwrK2UZOimIRl3X/4QctVqS8AiZjFqyOGrMXb/w==",
@@ -2609,7 +2612,7 @@
         "unist-util-visit-parents"
       ]
     },
-    "update-browserslist-db@1.3.3_browserslist@4.28.9": {
+    "update-browserslist-db@1.3.3_browserslist@4.29.3": {
       "integrity": "sha512-pJ2sYawQS0R/WI928Gj5GlPhTGzbMelq0+4INtSYNDV9ErKJcX6xjGWkoG/VnB3dpUm00zALaqkrUD77pO5TDQ==",
       "dependencies": [
         "browserslist",
@@ -2836,7 +2839,7 @@
       "npm:@tree-sitter-grammars/tree-sitter-markdown@0.3.2",
       "npm:@tree-sitter-grammars/tree-sitter-yaml@0.7.1",
       "npm:cssnano-preset-advanced@7.0.12",
-      "npm:cssnano@7.1.4",
+      "npm:cssnano@7.1.9",
       "npm:escape-html@1.0.3",
       "npm:postcss-variable-compress@3.0.0",
       "npm:rehype-external-links@3.0.0",
