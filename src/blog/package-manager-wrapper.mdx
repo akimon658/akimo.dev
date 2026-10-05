@@ -4,7 +4,7 @@ title: パッケージマネージャーのラッパーを作った
 
 僕は現在Macを使っているので、Homebrewで入れられるものはHomebrewで入れることが多い。しかし、何でもかんでもHomebrewで入れられるわけではないので、Go製ツールのインストールに`go install`を使うこともあるし、npm系のツールをpnpmで入れたりもする。複数のパッケージマネージャーを使うこと自体は別に構わないのだが、インストール関連ならまだしも、使用頻度の低いコマンドをパッケージマネージャーごとに覚えるのは難しい。また、Goはパッケージ**マネージャー**として貧弱である。こういった問題を解決するために、pacxというパッケージマネージャーのラッパーを作った。
 
-<comp.Card href="https://github.com/akimon658/pacx" title="akimon658/pacx: Wrapper for package managers, allowing you to define and configure your package managers in Lua" />
+<comp.LinkCard href="https://github.com/akimon658/pacx" title="akimon658/pacx: Wrapper for package managers, allowing you to define and configure your package managers in Lua" />
 
 類似のツールはちょっと調べただけでも[hkdb/app](https://github.com/hkdb/app)、[rami3l/pacaptr](https://github.com/rami3l/pacaptr)などなどいくらでも出てくるが、ツール側でサポートされたパッケージマネージャーのみ使えるというものが主流で拡張性に欠ける。そこでpacxでは、自分でパッケージマネージャーを定義し、その挙動をLuaで記述できるようにした。例えば、
 

@@ -1,4 +1,229 @@
 @import "tailwindcss";
 @import "./_vscode.css";
-@plugin "@tailwindcss/typography";
-@config "./_tailwind.config.ts";
+
+@theme {
+  --font-sans: "Noto Sans JP", sans-serif;
+  --font-mono: "Roboto Mono", monospace;
+
+  --max-width-article: 932px;
+  --max-width-content: 1280px;
+  --max-width-reader: 880px;
+
+  /* Theme-aware tokens (light) and their dark counterparts */
+  --color-surface: #f8fafc;
+  --color-surface-dark: #0b0e13;
+  --color-card: #ffffff;
+  --color-card-dark: #181d26;
+  --color-subtle: #f1f5f9;
+  --color-subtle-dark: #232b38;
+  --color-placeholder: #cbd5e1;
+  --color-placeholder-dark: #3a4556;
+  --color-line: #cbd5e1;
+  --color-line-dark: #94a3b8;
+  --color-accent: #334155;
+  --color-accent-dark: #8ca6b8;
+  --color-body: #0f172a;
+  --color-body-dark: #f1f5f9;
+  --color-sub: #475569;
+  --color-sub-dark: #94a3b8;
+  --color-link: #27639b;
+  --color-link-dark: #6c9dcb;
+  --color-on-accent: #ffffff;
+  --color-on-accent-dark: #0b0e13;
+
+  /* Theme-independent tokens */
+  --color-on-media: #ffffff;
+  --color-on-media-soft: #f1f5f9;
+  --color-on-media-faint: #cbd5e1;
+  --color-on-brand: #94a3b8;
+  --color-affiliation-isct: #1c3177;
+  --color-affiliation-trap: #005bac;
+  --color-affiliation-kirara: #2c2c2e;
+  --color-affiliation-pixiv: #0096fa;
+
+  /* Syntax highlighting */
+  --color-code: #1f1f1f;
+  --color-code-fg: #d4d4d4;
+  --color-code-inline: #f3f4f6;
+  --color-code-inline-dark: #1f1f1f;
+
+  --content-open-in-new: url("/icon/open_in_new_16dp_27639B.svg");
+  --content-open-in-new-dark: url("/icon/open_in_new_16dp_6C9DCB.svg");
+}
+
+/* Markdown styles of the article body, following the Article page of the design
+   file. They live in the components layer so the utilities of components
+   rendered inside an article (LinkCard) always win over them. */
+@layer components {
+  .article-body {
+    color: var(--color-body);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+
+  /* Blocks are spaced by the gap between siblings, which keeps the first and
+     the last child flush and removes the need for per-element resets. */
+  .article-body > * + * {
+    margin-block-start: 1rem;
+  }
+
+  @media (min-width: 48rem) {
+    .article-body > * + * {
+      margin-block-start: 1.25rem;
+    }
+  }
+
+  .article-body :is(h2, h3, h4, h5, h6) {
+    color: var(--color-body);
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .article-body h2 {
+    font-size: 22px;
+  }
+
+  .article-body h3 {
+    font-size: 18px;
+  }
+
+  .article-body h4 {
+    font-size: 16px;
+  }
+
+  .article-body :is(h5, h6) {
+    font-size: 14px;
+  }
+
+  .article-body strong {
+    color: var(--color-body);
+    font-weight: 700;
+  }
+
+  .article-body a {
+    color: var(--color-link);
+    text-decoration: none;
+  }
+
+  @media (hover: hover) {
+    .article-body a:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .article-body ul,
+  .article-body ol {
+    padding-inline-start: 1.25rem;
+  }
+
+  .article-body ul {
+    list-style-type: disc;
+  }
+
+  .article-body ol {
+    list-style-type: decimal;
+  }
+
+  .article-body ul > li::marker {
+    color: var(--color-body);
+  }
+
+  .article-body ol > li::marker {
+    color: var(--color-sub);
+    font-weight: 700;
+  }
+
+  .article-body li + li {
+    margin-block-start: 0.5rem;
+  }
+
+  .article-body li > :is(ul, ol) {
+    margin-block-start: 0.75em;
+  }
+
+  .article-body blockquote {
+    border-inline-start: 0.25rem solid var(--color-line);
+    color: var(--color-sub);
+    padding-inline-start: 1em;
+  }
+
+  .article-body :not(pre) > code {
+    background-color: var(--color-code-inline);
+    border-radius: 0.25rem;
+    color: var(--color-body);
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    line-height: 1.75;
+    padding: 0.125rem 0.25rem;
+  }
+
+  .article-body pre {
+    background-color: var(--color-code);
+    border-radius: 0.375rem;
+    color: var(--color-code-fg);
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    line-height: 1.7142857;
+    overflow-x: auto;
+    padding: 0.75rem 1rem;
+  }
+
+  .article-body hr {
+    border-color: var(--color-line);
+    border-top-width: 1px;
+  }
+
+  .article-body table {
+    font-size: 0.875rem;
+    line-height: 1.7142857;
+    width: 100%;
+  }
+
+  .article-body thead {
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .article-body tfoot {
+    border-top: 1px solid var(--color-line);
+  }
+
+  .article-body tbody tr {
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .article-body :is(th, td) {
+    padding: 0.5rem;
+    text-align: start;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .article-body {
+      color: var(--color-body-dark);
+    }
+
+    .article-body :is(h2, h3, h4, h5, h6),
+    .article-body strong {
+      color: var(--color-body-dark);
+    }
+
+    .article-body a {
+      color: var(--color-link-dark);
+    }
+
+    .article-body ul > li::marker {
+      color: var(--color-body-dark);
+    }
+
+    .article-body blockquote {
+      border-color: var(--color-line-dark);
+      color: var(--color-sub-dark);
+    }
+
+    .article-body :not(pre) > code {
+      background-color: var(--color-code-inline-dark);
+      color: var(--color-body-dark);
+    }
+  }
+}

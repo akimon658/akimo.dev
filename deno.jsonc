@@ -21,7 +21,6 @@
     ]
   },
   "imports": {
-    "@tailwindcss/typography": "npm:@tailwindcss/typography@0.5.19",
     "@tree-sitter-grammars/tree-sitter-lua": "npm:@tree-sitter-grammars/tree-sitter-lua@0.2.0",
     "@tree-sitter-grammars/tree-sitter-markdown": "npm:@tree-sitter-grammars/tree-sitter-markdown@0.3.2",
     "@tree-sitter-grammars/tree-sitter-yaml": "npm:@tree-sitter-grammars/tree-sitter-yaml@0.7.1",
@@ -33,6 +32,7 @@
     "postcss-variable-compress": "npm:postcss-variable-compress@3.0.0",
     "rehype-external-links": "npm:rehype-external-links@3.0.0",
     "rehype-raw": "npm:rehype-raw@7.0.0",
+    "simple-icons": "npm:simple-icons@16.33.0",
     "tree-sitter": "npm:tree-sitter@0.25.1",
     "tree-sitter-bash": "npm:tree-sitter-bash@0.25.1",
     "tree-sitter-go": "npm:tree-sitter-go@0.25.0",

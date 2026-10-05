@@ -5,7 +5,7 @@ interface ListData extends Lume.Data {
 }
 
 export default (
-  { comp, lang, search, limit, query, sort, see_more }: ListData,
+  { comp, lang, search, limit, query, see_more, sort }: ListData,
 ) => {
   const posts = search.pages(query, sort)
   if (!limit || limit > posts.length) {
@@ -15,39 +15,31 @@ export default (
   const pathPrefix = lang && lang !== "ja" ? "/" + lang : ""
 
   return (
-    <div className="
-      gap-6
-      grid
-      grid-cols-[repeat(1,max-content)]
-      justify-center
-      lg:grid-cols-[repeat(3,max-content)]
-      md:grid-cols-[repeat(2,max-content)]
-      my-8
-    ">
-      {posts.slice(0, limit).map((post) => (
-        <comp.Card
-          key={post.url}
-          href={post.externalUrl ? post.externalUrl : post.url}
-          title={post.title}
-          lang={post.lang}
-          date={post.date}
-          compact
-        />
-      ))}
+    <>
+      <div className="
+        grid
+        grid-cols-1
+        gap-4
+        md:grid-cols-3
+        md:gap-5
+      ">
+        {posts.slice(0, limit).map((post) => (
+          <comp.Card
+            key={post.url}
+            href={post.externalUrl ? post.externalUrl : post.url}
+            image={post.image}
+            title={post.title}
+            lang={post.lang}
+            date={post.date}
+          />
+        ))}
+      </div>
       {omitted &&
         (
-          <comp.CardContainer
-            href={pathPrefix + "/blog/"}
-            className={`
-              flex
-              items-center
-              justify-center
-            `}
-            compact
-          >
-            <div>{see_more}</div>
-          </comp.CardContainer>
+          <div className="mt-8 flex justify-center">
+            <comp.SeeMore href={pathPrefix + "/blog/"} see_more={see_more} />
+          </div>
         )}
-    </div>
+    </>
   )
 }

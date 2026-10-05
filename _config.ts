@@ -15,6 +15,7 @@ import postcss from "lume/plugins/postcss.ts"
 import redirects from "lume/plugins/redirects.ts"
 import robots from "lume/plugins/robots.ts"
 import sitemap from "lume/plugins/sitemap.ts"
+import tailwindCSS from "lume/plugins/tailwindcss.ts"
 import transformImages from "lume/plugins/transform_images.ts"
 import variableCompress from "postcss-variable-compress"
 import rehypeExternalLinks from "rehype-external-links"
@@ -26,7 +27,6 @@ import HTML from "tree-sitter-html"
 import JavaScript from "tree-sitter-javascript"
 import JSON from "tree-sitter-json"
 import TypeScript from "tree-sitter-typescript"
-import tailwindcss from "./src/_plugins/tailwindcss.ts"
 
 const site = lume({
   dest: "./public",
@@ -100,7 +100,7 @@ site.copy("icon")
 site.use(googleFonts({
   cssFile: "style.css",
   fonts:
-    "https://fonts.google.com/share?selection.family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700",
+    "https://fonts.google.com/share?selection.family=Noto+Sans+JP:wght@100..900|Roboto+Mono:wght@100..700",
 }))
 site.use(jsx())
 
@@ -143,7 +143,7 @@ site.use(mdx({
 }))
 site.use(redirects())
 
-site.use(tailwindcss())
+site.use(tailwindCSS())
 site.use(postcss({
   plugins: [
     cssnano({
@@ -153,7 +153,10 @@ site.use(postcss({
         },
       }),
     }),
-    variableCompress,
+    // Keep Tailwind's own variables intact: they are declared with `@property`,
+    // and this plugin only rewrites `var()` references, so renaming them would
+    // break every utility backed by a registered property (borders, gradients...).
+    variableCompress([(name) => name.startsWith("--tw-")]),
   ],
 }))
 site.use(robots({
