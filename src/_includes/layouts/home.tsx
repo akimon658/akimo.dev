@@ -3,7 +3,7 @@ import Icon, { type IconName, icons } from "../../_components/icon.tsx"
 export const layout = "layouts/root.tsx"
 
 interface SocialLink {
-  border?: string
+  border?: boolean
   href: string
   icon: IconName
   label: string
@@ -66,7 +66,6 @@ export default (data: Lume.Data, _helpers: Lume.Helpers) => {
                 `}
                 style={{
                   "background-color": `#${icons[link.icon].hex}`,
-                  ...(link.border ? { "border-color": link.border } : {}),
                 }}
               >
                 <Icon name={link.icon} size={18} />

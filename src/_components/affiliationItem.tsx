@@ -5,10 +5,17 @@ interface AffiliationData extends Lume.Data {
   title: string
 }
 
+const backgrounds: Record<string, string> = {
+  isct: "bg-brand-affiliation-isct",
+  trap: "bg-brand-affiliation-trap",
+  kirara: "bg-brand-affiliation-kirara",
+  pixiv: "bg-brand-affiliation-pixiv",
+}
+
 export default ({ color, period, subtitle, title }: AffiliationData) => {
   return (
     <li
-      className="
+      className={`
         flex
         flex-col
         gap-1
@@ -22,8 +29,8 @@ export default ({ color, period, subtitle, title }: AffiliationData) => {
         md:gap-4
         md:px-6
         dark:border-line-dark
-      "
-      style={{ "background-color": color }}
+        ${backgrounds[color] ?? ""}
+      `}
     >
       <div className="flex flex-col gap-1 md:flex-1">
         <div className="text-base leading-[1.2] font-bold text-on-media">

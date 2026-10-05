@@ -36,10 +36,10 @@
   --color-on-media-soft: #f1f5f9;
   --color-on-media-faint: #cbd5e1;
   --color-on-brand: #94a3b8;
-  --color-affiliation-isct: #1c3177;
-  --color-affiliation-trap: #005bac;
-  --color-affiliation-kirara: #2c2c2e;
-  --color-affiliation-pixiv: #0096fa;
+  --color-brand-affiliation-isct: #1c3177;
+  --color-brand-affiliation-trap: #005bac;
+  --color-brand-affiliation-kirara: #2c2c2e;
+  --color-brand-affiliation-pixiv: #0096fa;
 
   /* Syntax highlighting */
   --color-code: #1f1f1f;

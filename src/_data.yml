@@ -16,25 +16,25 @@ social:
   - label: "@akimon658"
     href: https://github.com/akimon658
     icon: github
-    border: "#94a3b8"
+    border: true
 
 affiliations:
   - title: 東京科学大学
     subtitle: 数理・計算科学系 学士課程3年
     period: 2024.04 – 現在
-    color: "#1c3177"
+    color: isct
   - title: 東京科学大学デジタル創作同好会traP
     subtitle: 会計
     period: 2024.04 – 現在
-    color: "#005bac"
+    color: trap
   - title: 東京科学大学きらら同好会
     subtitle: 代表
     period: 2024.06 – 現在
-    color: "#2c2c2e"
+    color: kirara
   - title: ピクシブ株式会社
     subtitle: アルバイト
     period: 2026.03 – 現在
-    color: "#0096fa"
+    color: pixiv
 
 metas:
   site: akimo.dev
@@ -63,22 +63,22 @@ en:
     - label: "@akimon658"
       href: https://github.com/akimon658
       icon: github
-      border: "#94a3b8"
+      border: true
 
   affiliations:
     - title: Institute of Science Tokyo
       subtitle: Department of Mathematical and Computing Science, Undergraduate 3rd year
       period: 2024.04 – Present
-      color: "#1c3177"
+      color: isct
     - title: traP, Digital Creation Club at ISCT
       subtitle: Treasurer
       period: 2024.04 – Present
-      color: "#005bac"
+      color: trap
     - title: Kirara Club at ISCT
       subtitle: Representative
       period: 2024.06 – Present
-      color: "#2c2c2e"
+      color: kirara
     - title: pixiv Inc.
       subtitle: Part-time
       period: 2026.03 – Present
-      color: "#0096fa"
+      color: pixiv
