@@ -1,5 +1,6 @@
 interface AffiliationData extends Lume.Data {
   color: string
+  href: string
   period: string
   subtitle: string
   title: string
@@ -12,10 +13,14 @@ const backgrounds: Record<string, string> = {
   pixiv: "bg-brand-affiliation-pixiv",
 }
 
-export default ({ color, period, subtitle, title }: AffiliationData) => {
+export default ({ color, href, period, subtitle, title }: AffiliationData) => {
   return (
-    <li
-      className={`
+    <li>
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`
         flex
         flex-col
         gap-1
@@ -24,6 +29,8 @@ export default ({ color, period, subtitle, title }: AffiliationData) => {
         border-line
         px-4
         py-4
+        transition-[filter]
+        hover:brightness-125
         md:flex-row
         md:items-center
         md:gap-4
@@ -31,18 +38,19 @@ export default ({ color, period, subtitle, title }: AffiliationData) => {
         dark:border-line-dark
         ${backgrounds[color] ?? ""}
       `}
-    >
-      <div className="flex flex-col gap-1 md:flex-1">
-        <div className="text-base leading-[1.2] font-bold text-on-media">
-          {title}
+      >
+        <div className="flex flex-col gap-1 md:flex-1">
+          <div className="text-base leading-[1.2] font-bold text-on-media">
+            {title}
+          </div>
+          <div className="text-sm leading-[1.2] text-on-media-soft">
+            {subtitle}
+          </div>
         </div>
-        <div className="text-sm leading-[1.2] text-on-media-soft">
-          {subtitle}
+        <div className="text-sm leading-[1.2] text-on-media-faint md:text-right">
+          {period}
         </div>
-      </div>
-      <div className="text-sm leading-[1.2] text-on-media-faint md:text-right">
-        {period}
-      </div>
+      </a>
     </li>
   )
 }
