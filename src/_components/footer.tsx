@@ -8,6 +8,10 @@ interface FooterData extends Lume.Data {
 export default (
   { alternates, comp, lang, source_code }: FooterData,
 ) => {
+  const visibleAlternates = (alternates ?? []).filter(
+    (alternate) => alternate.lang !== lang,
+  )
+
   return (
     <footer className="w-full">
       <div className="
@@ -25,21 +29,20 @@ export default (
         leading-[1.2]
         md:px-20
       ">
-        {alternates && alternates.length > 0 &&
-          alternates.map((alternate) => {
-            if (alternate.lang !== lang) {
-              return (
-                <comp.Link
-                  key={alternate.lang}
-                  href={alternate.url}
-                  className="text-link dark:text-link-dark"
-                >
-                  {alternate.switch_to}
-                </comp.Link>
-              )
-            }
-          })}
-        <span className="text-sub dark:text-sub-dark">|</span>
+        {visibleAlternates.length > 0 && (
+          <>
+            {visibleAlternates.map((alternate) => (
+              <comp.Link
+                key={alternate.lang}
+                href={alternate.url}
+                className="text-link dark:text-link-dark"
+              >
+                {alternate.switch_to}
+              </comp.Link>
+            ))}
+            <span className="text-sub dark:text-sub-dark">|</span>
+          </>
+        )}
         <comp.Link
           href="https://github.com/akimon658/akimo.dev"
           className="text-link dark:text-link-dark"
