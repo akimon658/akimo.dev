@@ -1,10 +1,44 @@
+affiliations_heading: 所属
 article_list: 記事一覧
-articles: 記事
 author_name: あきも
-author_affiliation: 東京科学大学 数理・計算科学系 学士3年
+nav_home: ホーム
+nav_articles: 記事
+published: 公開
 see_more: もっと見る
 source_code: ソースコード
 switch_to: 日本語に切り替える
+wrote_articles: 書いた記事
+
+social:
+  - label: "@akimo.dev"
+    href: https://bsky.app/profile/akimo.dev
+    icon: bluesky
+  - label: "@akimon658"
+    href: https://github.com/akimon658
+    icon: github
+    border: true
+
+affiliations:
+  - title: 東京科学大学
+    subtitle: 数理・計算科学系 学士課程3年
+    period: 2024.04 – 現在
+    color: isct
+    href: https://www.isct.ac.jp/ja
+  - title: 東京科学大学デジタル創作同好会traP
+    subtitle: 会計
+    period: 2024.04 – 現在
+    color: trap
+    href: https://trap.jp/
+  - title: 東京科学大学きらら同好会
+    subtitle: 代表
+    period: 2024.06 – 現在
+    color: kirara
+    href: https://isct-kirara.github.io/
+  - title: ピクシブ株式会社
+    subtitle: アルバイト
+    period: 2026.03 – 現在
+    color: pixiv
+    href: https://www.pixiv.co.jp/
 
 metas:
   site: akimo.dev
@@ -15,10 +49,44 @@ metas:
   generator: true
 
 en:
+  affiliations_heading: Affiliations
   article_list: Article List
-  articles: Articles
   author_name: akimo
-  author_affiliation: Department of Mathematical and Computing Science, Institute of Science Tokyo
+  nav_home: Home
+  nav_articles: Articles
+  published: Published
   see_more: See More
   source_code: Source Code
   switch_to: Switch to English
+  wrote_articles: Articles I Wrote
+
+  social:
+    - label: "@akimo.dev"
+      href: https://bsky.app/profile/akimo.dev
+      icon: bluesky
+    - label: "@akimon658"
+      href: https://github.com/akimon658
+      icon: github
+      border: true
+
+  affiliations:
+    - title: Institute of Science Tokyo
+      subtitle: Department of Mathematical and Computing Science, Undergraduate 3rd year
+      period: 2024.04 – Present
+      color: isct
+      href: https://www.isct.ac.jp/en
+    - title: Digital Creators Club traP
+      subtitle: Treasurer
+      period: 2024.04 – Present
+      color: trap
+      href: https://trap.jp/
+    - title: Institute of Science Tokyo Kirara Lovers' Association
+      subtitle: Representative
+      period: 2024.06 – Present
+      color: kirara
+      href: https://isct-kirara.github.io/
+    - title: pixiv Inc.
+      subtitle: Part-time
+      period: 2026.03 – Present
+      color: pixiv
+      href: https://www.pixiv.co.jp/

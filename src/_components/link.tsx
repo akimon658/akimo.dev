@@ -8,11 +8,9 @@ export default ({ children, className, href, title }: LinkData) => {
   const isExternal = href.startsWith("http")
   if (className == undefined) {
     className = `
-      dark:text-blue-400
+      text-link
       hover:underline
-      text-blue-600
-      visited:dark:text-purple-400
-      visited:text-purple-700
+      dark:text-link-dark
     `
 
     if (isExternal) {

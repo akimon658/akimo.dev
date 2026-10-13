@@ -1,3 +1,4 @@
+id: akimo.dev/blog
 title: Article List
 layout: layouts/list.tsx
 lang: en
