@@ -1,0 +1,15 @@
+---
+import ArticleList from "../../layouts/ArticleList.astro";
+import Root from "../../layouts/Root.astro";
+import { getIndexAlternates } from "../../libs/posts";
+import { siteText } from "../../libs/site";
+---
+
+<Root
+  lang="ja"
+  title={siteText.ja.article_list}
+  path="/blog/"
+  alternates={getIndexAlternates("blog", "ja")}
+>
+  <ArticleList lang="ja" />
+</Root>

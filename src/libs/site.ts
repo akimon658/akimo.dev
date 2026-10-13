@@ -1,0 +1,156 @@
+// Localized UI strings and site data, ported from the former `src/_data.yml`
+// (Lume's multilanguage cascade: top level = Japanese defaults,
+// `en:` overrides for English).
+
+export type Lang = "ja" | "en";
+
+export type IconName = "bluesky" | "github";
+
+export interface SocialLink {
+  label: string;
+  href: string;
+  icon: IconName;
+  border?: boolean;
+}
+
+export interface Affiliation {
+  title: string;
+  subtitle: string;
+  period: string;
+  color: string;
+  href: string;
+}
+
+export interface SiteText {
+  affiliations_heading: string;
+  article_list: string;
+  author_name: string;
+  nav_home: string;
+  nav_articles: string;
+  published: string;
+  see_more: string;
+  source_code: string;
+  switch_to: string;
+  wrote_articles: string;
+  social: SocialLink[];
+  affiliations: Affiliation[];
+}
+
+const ja: SiteText = {
+  affiliations_heading: "所属",
+  article_list: "記事一覧",
+  author_name: "あきも",
+  nav_home: "ホーム",
+  nav_articles: "記事",
+  published: "公開",
+  see_more: "もっと見る",
+  source_code: "ソースコード",
+  switch_to: "日本語に切り替える",
+  wrote_articles: "書いた記事",
+  social: [
+    {
+      label: "@akimo.dev",
+      href: "https://bsky.app/profile/akimo.dev",
+      icon: "bluesky",
+    },
+    {
+      label: "@akimon658",
+      href: "https://github.com/akimon658",
+      icon: "github",
+      border: true,
+    },
+  ],
+  affiliations: [
+    {
+      title: "東京科学大学",
+      subtitle: "数理・計算科学系 学士課程3年",
+      period: "2024.04 – 現在",
+      color: "isct",
+      href: "https://www.isct.ac.jp/ja",
+    },
+    {
+      title: "東京科学大学デジタル創作同好会traP",
+      subtitle: "会計",
+      period: "2024.04 – 現在",
+      color: "trap",
+      href: "https://trap.jp/",
+    },
+    {
+      title: "東京科学大学きらら同好会",
+      subtitle: "代表",
+      period: "2024.06 – 現在",
+      color: "kirara",
+      href: "https://isct-kirara.github.io/",
+    },
+    {
+      title: "ピクシブ株式会社",
+      subtitle: "アルバイト",
+      period: "2026.03 – 現在",
+      color: "pixiv",
+      href: "https://www.pixiv.co.jp/",
+    },
+  ],
+};
+
+const en: SiteText = {
+  ...ja,
+  affiliations_heading: "Affiliations",
+  article_list: "Article List",
+  author_name: "akimo",
+  nav_home: "Home",
+  nav_articles: "Articles",
+  published: "Published",
+  see_more: "See More",
+  source_code: "Source Code",
+  switch_to: "Switch to English",
+  wrote_articles: "Articles I Wrote",
+  social: [
+    {
+      label: "@akimo.dev",
+      href: "https://bsky.app/profile/akimo.dev",
+      icon: "bluesky",
+    },
+    {
+      label: "@akimon658",
+      href: "https://github.com/akimon658",
+      icon: "github",
+      border: true,
+    },
+  ],
+  affiliations: [
+    {
+      title: "Institute of Science Tokyo",
+      subtitle:
+        "Department of Mathematical and Computing Science, Undergraduate 3rd year",
+      period: "2024.04 – Present",
+      color: "isct",
+      href: "https://www.isct.ac.jp/en",
+    },
+    {
+      title: "Digital Creators Club traP",
+      subtitle: "Treasurer",
+      period: "2024.04 – Present",
+      color: "trap",
+      href: "https://trap.jp/",
+    },
+    {
+      title: "Institute of Science Tokyo Kirara Lovers' Association",
+      subtitle: "Representative",
+      period: "2024.06 – Present",
+      color: "kirara",
+      href: "https://isct-kirara.github.io/",
+    },
+    {
+      title: "pixiv Inc.",
+      subtitle: "Part-time",
+      period: "2026.03 – Present",
+      color: "pixiv",
+      href: "https://www.pixiv.co.jp/",
+    },
+  ],
+};
+
+export const siteText: Record<Lang, SiteText> = { ja, en };
+
+export const twitterHandle = "@akimon658";
+export const defaultOgImage = "/img/og/default.png";

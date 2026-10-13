@@ -1,3 +1,0 @@
-# Animated AVIF images are not supported by Sharp
-transformImages:
-  format: webp

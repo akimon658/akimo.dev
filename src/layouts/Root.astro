@@ -1,0 +1,77 @@
+---
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import {
+  defaultOgImage,
+  siteText,
+  twitterHandle,
+  type Lang,
+} from "../libs/site";
+import type { Alternate } from "../libs/posts";
+import "../styles/global.css";
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description?: string;
+  image?: string;
+  ogType?: "website" | "article";
+  path: string;
+  alternates: Alternate[];
+}
+
+const {
+  lang,
+  title,
+  description,
+  image,
+  ogType = "website",
+  path,
+  alternates,
+} = Astro.props;
+
+const site = "https://akimo.dev";
+const canonical = new URL(path, site).toString();
+const ogImage = new URL(image ?? defaultOgImage, site).toString();
+const ogLocale = lang === "ja" ? "ja_JP" : "en_US";
+const ogAlternate = lang === "ja" ? "en_US" : "ja_JP";
+const htmlLang = lang === "ja" ? "ja" : "en";
+---
+
+<!doctype html>
+<html lang={htmlLang}>
+  <head>
+    <meta charset="utf-8" />
+    <title>{title}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {description && <meta name="description" content={description} />}
+    <meta property="og:title" content={title} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content="akimo.dev" />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:locale:alternate" content={ogAlternate} />
+    {description && <meta property="og:description" content={description} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content={twitterHandle} />
+    <link rel="icon" href="/icon/favicon.ico" />
+    <link rel="canonical" href={canonical} />
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body
+    class="
+      dark:bg-surface-dark
+      dark:text-body-dark
+      flex
+      min-h-dvh
+      flex-col
+      bg-surface
+      text-body
+    "
+  >
+    <Header lang={lang} currentPath={path} />
+    <main class="flex-1"><slot /></main>
+    <Footer lang={lang} alternates={alternates} />
+  </body>
+</html>

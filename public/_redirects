@@ -1,0 +1,14 @@
+# Legacy Hugo-era URLs, previously served as meta-refresh stubs by Lume's
+# redirects plugin (from the `oldUrl` frontmatter). Served as 301s by
+# Cloudflare Workers Static Assets.
+# https://developers.cloudflare.com/workers/static-assets/redirects/
+/p/2021/wsl-default-browser/ /blog/wsl-default-browser/ 301
+/p/2022/disqus-multi-lang/ /blog/disqus-multi-lang/ 301
+/p/2022/hugo-whitespace/ /blog/hugo-whitespace/ 301
+/en/p/2021/customize-powershell/ /en/blog/customize-powershell/ 301
+/en/p/2021/wsl-default-browser/ /en/blog/wsl-default-browser/ 301
+/en/p/2022/awesome-header/ /en/blog/awesome-header/ 301
+/en/p/2022/disqus-multi-lang/ /en/blog/disqus-multi-lang/ 301
+/en/p/2022/go-local-cookie/ /en/blog/go-local-cookie/ 301
+/en/p/2022/hugo-url-cards/ /en/blog/hugo-url-cards/ 301
+/en/p/2022/hugo-whitespace/ /en/blog/hugo-whitespace/ 301

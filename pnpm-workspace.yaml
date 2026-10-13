@@ -1,0 +1,13 @@
+allowBuilds:
+  '@tree-sitter-grammars/tree-sitter-lua': true
+  '@tree-sitter-grammars/tree-sitter-markdown': true
+  '@tree-sitter-grammars/tree-sitter-yaml': true
+  esbuild: true
+  sharp: true
+  tree-sitter: true
+  tree-sitter-bash: true
+  tree-sitter-go: true
+  tree-sitter-html: true
+  tree-sitter-javascript: true
+  tree-sitter-json: true
+  tree-sitter-typescript: true

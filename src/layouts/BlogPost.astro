@@ -1,0 +1,95 @@
+---
+import { siteText, type Lang } from "../libs/site";
+
+interface Props {
+  lang: Lang;
+  title: string;
+  date: Date;
+  image?: string;
+}
+
+const { lang, title, date, image } = Astro.props;
+const { published } = siteText[lang];
+const locale = lang === "ja" ? "ja-JP" : "en-US";
+const formatted = `${date.toLocaleDateString(locale, {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+})} ${published}`;
+---
+
+<div
+  class="mx-auto flex max-w-article flex-col gap-5 px-6 py-8 md:gap-6 md:px-10"
+>
+  {
+    image ? (
+      <div class="relative aspect-video overflow-hidden rounded">
+        <img
+          src={image}
+          alt=""
+          class="absolute inset-0 h-full w-full object-cover"
+        />
+        <div
+          class="
+            absolute
+            inset-0
+            bg-[image:linear-gradient(to_bottom,transparent,rgb(0_0_0/0.65))]
+          "
+        >
+        </div>
+        <div class="absolute inset-x-0 bottom-0 flex flex-col gap-2 p-4">
+          <div
+            class="
+              text-2xl
+              leading-[1.2]
+              font-black
+              text-on-media
+              md:text-[32px]
+            "
+          >
+            {title}
+          </div>
+          <div class="text-sm leading-[1.2] text-on-media/85">
+            {formatted}
+          </div>
+        </div>
+      </div>
+    ) : (
+      <div class="flex flex-col gap-2">
+        <h1
+          class="
+            text-2xl
+            leading-[1.2]
+            font-black
+            text-body
+            md:text-[32px]
+            dark:text-body-dark
+          "
+        >
+          {title}
+        </h1>
+        <time
+          datetime={date.toISOString()}
+          class="text-sm leading-[1.2] text-sub dark:text-sub-dark"
+        >
+          {formatted}
+        </time>
+      </div>
+    )
+  }
+  <article
+    class="
+      article-body
+      rounded
+      border-2
+      border-line
+      bg-card
+      p-6
+      md:p-10
+      dark:border-line-dark
+      dark:bg-card-dark
+    "
+  >
+    <slot />
+  </article>
+</div>

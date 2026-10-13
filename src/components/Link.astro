@@ -1,0 +1,34 @@
+---
+interface Props {
+  href: string;
+  class?: string;
+  title?: string;
+}
+
+const { href, title } = Astro.props;
+let className = Astro.props.class;
+const isExternal = href.startsWith("http");
+
+if (className === undefined) {
+  className = `
+    text-link
+    hover:underline
+    dark:text-link-dark
+  `;
+
+  if (isExternal) {
+    className +=
+      " after:content-open-in-new after:dark:content-open-in-new-dark";
+  }
+}
+---
+
+<a
+  href={href}
+  target={isExternal ? "_blank" : undefined}
+  rel={isExternal ? "noopener noreferrer" : undefined}
+  class={className}
+  title={title}
+>
+  <slot />
+</a>

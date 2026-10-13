@@ -4,9 +4,15 @@ on:
   push:
     paths:
       - 'src/**'
-      - '_config.ts'
-      - 'deno.jsonc'
-      - 'deno.lock'
+      - 'public/**'
+      - 'scripts/**'
+      - 'astro.config.mjs'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
+      - 'postcss.config.mjs'
+      - 'tsconfig.json'
+      - 'wrangler.jsonc'
 
   workflow_dispatch:
 
@@ -20,50 +26,35 @@ jobs:
 
     permissions:
       actions: write
-      pages: write
       id-token: write
+      contents: read
 
     steps:
       - uses: actions/checkout@v7
         with:
+          # Full history is required: article dates fall back to Git creation
+          # dates via @inox-tools/content-utils.
           fetch-depth: 0
 
-      - uses: denoland/setup-deno@v2.0.5
-        with:
-          deno-version: v2.x
+      - uses: pnpm/action-setup@v4
 
-      - name: Configure Deno cache
-        uses: actions/cache@v6
+      - uses: actions/setup-node@v6
         with:
-          path: ~/.cache/deno
-          key: deno-${{ hashFiles('deno.lock') }}
-          restore-keys: deno-
+          node-version: 24
+          cache: pnpm
 
-      - name: Configure build cache
-        uses: actions/cache@v6
-        with:
-          path: _cache
-          key: lume-${{ hashFiles('src/**', '_config.ts') }}
-          restore-keys: lume-
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
       - name: Build
         env:
           TZ: Asia/Tokyo
-        run: |
-          deno task lume
-          touch public/.nojekyll
+        run: pnpm build
 
-      - name: Configure npm cache # Where wrangler is installed
-        uses: actions/cache@v6
-        with:
-          path: ~/.npm
-          key: npm-${{ github.run_id }}
-          restore-keys: npm-
-
-      - name: Deploy to Cloudflare Pages
+      - name: Deploy to Cloudflare Workers
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy public/ --project-name=akimon658
+          command: deploy
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}

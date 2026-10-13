@@ -1,0 +1,14 @@
+---
+import Home from "../layouts/Home.astro";
+import Root from "../layouts/Root.astro";
+import { getIndexAlternates } from "../libs/posts";
+---
+
+<Root
+  lang="ja"
+  title="akimo.dev"
+  path="/"
+  alternates={getIndexAlternates("home", "ja")}
+>
+  <Home lang="ja" />
+</Root>
