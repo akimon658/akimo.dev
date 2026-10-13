@@ -27,8 +27,11 @@ export default ({ date, href, image, lang, title }: CardData) => {
         border-2
         border-line
         bg-placeholder
+        transition-colors
+        hover:border-accent
         dark:border-line-dark
         dark:bg-placeholder-dark
+        dark:hover:border-accent-dark
       "
     >
       {image && (
@@ -36,13 +39,15 @@ export default ({ date, href, image, lang, title }: CardData) => {
           src={image}
           alt=""
           loading="lazy"
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover transition-transform group-hover:scale-105"
         />
       )}
       <div className="
           absolute
           inset-0
           bg-[image:linear-gradient(to_bottom,transparent,rgb(0_0_0/0.65))]
+          transition-opacity
+          group-hover:opacity-90
         ">
       </div>
       <div className="relative flex flex-col gap-2 p-4">
