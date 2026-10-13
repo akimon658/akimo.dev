@@ -11,6 +11,7 @@ import mdx from "lume/plugins/mdx.ts"
 import metas from "lume/plugins/metas.ts"
 import minifyHTML from "lume/plugins/minify_html.ts"
 import multilanguage from "lume/plugins/multilanguage.ts"
+import picture from "lume/plugins/picture.ts"
 import postcss from "lume/plugins/postcss.ts"
 import redirects from "lume/plugins/redirects.ts"
 import robots from "lume/plugins/robots.ts"
@@ -167,6 +168,7 @@ site.use(robots({
     },
   ],
 }))
+site.use(picture())
 site.use(transformImages())
 site.add("/img")
 

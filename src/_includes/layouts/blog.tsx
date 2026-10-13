@@ -35,6 +35,7 @@ export default (data: Lume.Data, _helpers: Lume.Helpers) => {
           <div className="relative aspect-video overflow-hidden rounded">
             <img
               src={data.image}
+              transform-images="avif 960x540"
               alt=""
               className="absolute inset-0 h-full w-full object-cover"
             />

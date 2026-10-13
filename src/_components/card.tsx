@@ -37,6 +37,7 @@ export default ({ date, href, image, lang, title }: CardData) => {
       {image && (
         <img
           src={image}
+          transform-images="avif 800x600"
           alt=""
           loading="lazy"
           className="absolute inset-0 h-full w-full object-cover transition-transform group-hover:scale-105"
