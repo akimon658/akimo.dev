@@ -32,7 +32,7 @@
     "postcss-variable-compress": "npm:postcss-variable-compress@3.0.0",
     "rehype-external-links": "npm:rehype-external-links@3.0.0",
     "rehype-raw": "npm:rehype-raw@7.0.0",
-    "simple-icons": "npm:simple-icons@16.33.0",
+    "simple-icons": "npm:simple-icons@16.36.0",
     "tree-sitter": "npm:tree-sitter@0.25.1",
     "tree-sitter-bash": "npm:tree-sitter-bash@0.25.1",
     "tree-sitter-go": "npm:tree-sitter-go@0.25.0",

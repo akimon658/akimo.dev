@@ -58,7 +58,7 @@
     "npm:remark-gfm@4.0.1": "4.0.1",
     "npm:remove-markdown@0.6.4": "0.6.4",
     "npm:sharp@0.35.3": "0.35.3",
-    "npm:simple-icons@16.33.0": "16.33.0",
+    "npm:simple-icons@16.36.0": "16.36.0",
     "npm:tailwindcss@4.3.3": "4.3.3",
     "npm:tree-sitter-bash@0.25.1": "0.25.1_tree-sitter@0.25.1",
     "npm:tree-sitter-go@0.25.0": "0.25.0_tree-sitter@0.25.1",
@@ -2374,8 +2374,8 @@
         "@img/sharp-win32-x64"
       ]
     },
-    "simple-icons@16.33.0": {
-      "integrity": "sha512-z14u6A8ngAg9mgERRsNO8YkjIMefehIpBk7A8Dz3Gd91945qFP19MLPSHgV4z8P5u/MRYd5e07OTzaDoB4d6qA=="
+    "simple-icons@16.36.0": {
+      "integrity": "sha512-+VNPPkqSOLidFeSgBKUWX4n50WPpDC09hav+BgS26anIF1oQOlGBb8LvwGR+6fYRjo+B6CiKzNBceMPkSVXANQ=="
     },
     "source-map-js@1.2.1": {
       "integrity": "sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA=="
@@ -2834,7 +2834,7 @@
       "npm:postcss-variable-compress@3.0.0",
       "npm:rehype-external-links@3.0.0",
       "npm:rehype-raw@7.0.0",
-      "npm:simple-icons@16.33.0",
+      "npm:simple-icons@16.36.0",
       "npm:tree-sitter-bash@0.25.1",
       "npm:tree-sitter-go@0.25.0",
       "npm:tree-sitter-html@0.23.2",
