@@ -219,8 +219,8 @@ importers:
         specifier: 7.1.4
         version: 7.1.4(postcss@8.5.29)
       cssnano-preset-advanced:
-        specifier: 7.0.12
-        version: 7.0.12(postcss@8.5.29)
+        specifier: 7.0.16
+        version: 7.0.16(postcss@8.5.29)
       escape-html:
         specifier: 1.0.3
         version: 1.0.3
@@ -1843,11 +1843,11 @@ packages:
     engines: {node: '>=4'}
     hasBin: true
 
-  cssnano-preset-advanced@7.0.12:
-    resolution: {integrity: sha512-S+UCfEMBCaYqNmjY+yCTNh4ur+B83z5qpwkzUMER6kVpdQ5CBUxIkALZGhp2KPP3M4VefRCIBMqJ6Z0PFMwvEA==}
+  cssnano-preset-advanced@7.0.16:
+    resolution: {integrity: sha512-VJHfOZeEavQsFW3BVDXvGNuKDeWy2cyXMelG4/DFYRfQTFAD7fvtOz+tWMoXJNlxoon6X20P3FggUM1eh/YICA==}
     engines: {node: ^18.12.0 || ^20.9.0 || >=22.0}
     peerDependencies:
-      postcss: ^8.4.32
+      postcss: ^8.5.13
 
   cssnano-preset-default@7.0.17:
     resolution: {integrity: sha512-11qO63A+czwguQFJCaTdICvbaxn0pJzz/XghLlv+OT7WyToDxAMR0Xb3/26/l0y0hQJywwNbj/SLSQlGBHE1OA==}
@@ -4817,7 +4817,7 @@ snapshots:
 
   cssesc@3.0.0: {}
 
-  cssnano-preset-advanced@7.0.12(postcss@8.5.29):
+  cssnano-preset-advanced@7.0.16(postcss@8.5.29):
     dependencies:
       autoprefixer: 10.6.1(postcss@8.5.29)
       browserslist: 4.29.3

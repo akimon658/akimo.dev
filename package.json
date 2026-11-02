@@ -33,7 +33,7 @@
     "@tree-sitter-grammars/tree-sitter-markdown": "0.3.2",
     "@tree-sitter-grammars/tree-sitter-yaml": "0.7.1",
     "cssnano": "7.1.4",
-    "cssnano-preset-advanced": "7.0.12",
+    "cssnano-preset-advanced": "7.0.16",
     "escape-html": "1.0.3",
     "postcss-variable-compress": "3.0.0",
     "sharp": "^0.35.5",
