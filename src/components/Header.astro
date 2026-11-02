@@ -14,7 +14,7 @@ const articlesPath = `${basePath}blog/`;
 const navItems = [
   { active: currentPath === basePath, href: basePath, label: nav_home },
   {
-    active: currentPath.startsWith(articlesPath),
+    active: currentPath === articlesPath,
     href: articlesPath,
     label: nav_articles,
   },
