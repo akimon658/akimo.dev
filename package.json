@@ -36,6 +36,7 @@
     "cssnano-preset-advanced": "7.0.12",
     "escape-html": "1.0.3",
     "postcss-variable-compress": "3.0.0",
+    "sharp": "^0.35.5",
     "tree-sitter": "0.25.1",
     "tree-sitter-bash": "0.25.1",
     "tree-sitter-go": "0.25.0",
