@@ -8,7 +8,9 @@ lang: "en"
 oldUrl: "/en/p/2022/hugo-url-cards/"
 url: "/blog/hugo-url-cards/"
 ---
+import { Image } from "astro:assets";
 import LinkCard from "../../components/LinkCard.astro";
+import devCard from "../../assets/dev-card.webp";
 
 
 [Hugo](https://gohugo.io) is known as a super-fast static site generator.
@@ -133,7 +135,12 @@ I'm using `Title`, `URL.Host`, `Description`, and `Image`, but the JSON gives yo
 {{</* card "https://dev.to" */>}}
 ```
 
-![Generated card](/img/dev-card.avif)
+<Image
+  src={devCard}
+  alt="Generated card"
+  format="avif"
+  quality={60}
+/>
 
 Here you can see, Hugo successfully generated a URL card!
 

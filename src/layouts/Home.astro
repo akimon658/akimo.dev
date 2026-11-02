@@ -1,10 +1,12 @@
 ---
+import { Image } from "astro:assets";
 import { siBluesky, siGithub } from "simple-icons";
 import AffiliationItem from "../components/AffiliationItem.astro";
 import Icon from "../components/Icon.astro";
 import List from "../components/List.astro";
 import { getSortedPosts } from "../libs/posts";
 import { siteText, type Lang } from "../libs/site";
+import iconImage from "../assets/animated/icon.webp";
 
 const icons = {
   bluesky: siBluesky,
@@ -36,7 +38,14 @@ const posts = (await getSortedPosts(lang)).slice(0, 6);
   "
 >
   <div class="flex flex-col items-center gap-4">
-    <img src="/img/animated/icon.webp" alt="" width="128" height="128" />
+    <Image
+      src={iconImage}
+      alt=""
+      width={128}
+      height={128}
+      format="webp"
+      quality={70}
+    />
     <h1
       class="
         text-[40px]

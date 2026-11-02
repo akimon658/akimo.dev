@@ -8,11 +8,18 @@ lang: "en"
 oldUrl: "/en/p/2022/awesome-header/"
 url: "/blog/awesome-header/"
 ---
+import { Image } from "astro:assets";
+import googleGif from "../../assets/animated/google.gif";
 
 Headers can be animated easily by CSS and a few JavaScript, but the speed will be constant.
 I hate that, so I'll create a header that works naturally like this.
 
-![Search result screen of Google images](/img/animated/google.webp)
+<Image
+  src={googleGif}
+  alt="Search result screen of Google images"
+  format="webp"
+  quality={70}
+/>
 
 ## Sample code & Demo
 

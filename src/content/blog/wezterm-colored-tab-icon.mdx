@@ -1,18 +1,24 @@
 ---
 title: WezTermでタブに色付きのアイコンを表示しよう
 date: 2025-01-02T13:19:21+09:00
-image: /img/og/wezterm-colored-tab-icon.png
-metas:
-  image: /img/og/wezterm-colored-tab-icon.png
+image: ../../assets/og/wezterm-colored-tab-icon.png
 ---
+import { Image } from "astro:assets";
 import LinkCard from "../../components/LinkCard.astro";
+import coloredCloseButton from "../../assets/colored-close-button.png";
+import weztermColoredTabIcon from "../../assets/wezterm-colored-tab-icon.png";
 
 
 ## やりたいこと
 
 WezTermで複数のタブを開いていると、どのタブで何をしているのかが分かりにくくなる。そこで、起動中のプロセスに応じたアイコンをタブに表示させたい。ただアイコンを表示するだけだとテキストと同じ色になってしまい味気ないので、アイコン部分だけ色を変えて目立たせるのが今回の目標だ。
 
-![WezTermでタブに色付きのアイコンを表示した画像](/img/wezterm-colored-tab-icon.avif)
+<Image
+  src={weztermColoredTabIcon}
+  alt="WezTermでタブに色付きのアイコンを表示した画像"
+  format="avif"
+  quality={60}
+/>
 
 ## プロセス名とアイコンの対応関係を定義する
 
@@ -105,7 +111,12 @@ return {
 
 しかし、これではなぜか閉じるボタンもアイコンと同じ色になってしまう。
 
-![閉じるボタンの色も変わってしまった様子](/img/colored-close-button.avif)
+<Image
+  src={coloredCloseButton}
+  alt="閉じるボタンの色も変わってしまった様子"
+  format="avif"
+  quality={60}
+/>
 
 ドキュメントを見ても閉じるボタンの色がどのように決定されるのかについての記述は見つけられなかったが、色々試した結果**タブの最初に現れる非空文字列**と同じ色になるっぽいということが分かった。なので、最初に閉じるボタンと同じ色の[ゼロ幅スペース](https://ja.wikipedia.org/wiki/ゼロ幅スペース)を入れることで対処できる。
 

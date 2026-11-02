@@ -8,6 +8,8 @@ oldUrl: "/en/p/2022/hugo-whitespace/"
 url: "/blog/hugo-whitespace/"
 id: hugo-whitespace
 ---
+import { Image } from "astro:assets";
+import unnecessaryWhitespace from "../../assets/unnecessary-whitespace.webp";
 
 I'm running this blog with [Hugo](https://gohugo.io).
 I love it because it's super fast and functional, but I had a problem.
@@ -19,7 +21,12 @@ This is [test](https://example.com), just a [sample](https://sample.test)
 
 This would output...
 
-![unnecessary whitespace](/img/unnecessary-whitespace.avif)
+<Image
+  src={unnecessaryWhitespace}
+  alt="unnecessary whitespace"
+  format="avif"
+  quality={60}
+/>
 
 like this.
 It rendered unnecessary space before comma or period.

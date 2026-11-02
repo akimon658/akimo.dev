@@ -5,7 +5,6 @@ on:
     paths:
       - 'src/**'
       - 'public/**'
-      - 'scripts/**'
       - 'astro.config.mjs'
       - 'package.json'
       - 'pnpm-lock.yaml'

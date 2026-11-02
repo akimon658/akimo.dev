@@ -1,6 +1,7 @@
 ---
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
+import type { BlogEntry } from "../libs/posts";
 import {
   defaultOgImage,
   siteText,
@@ -14,7 +15,7 @@ interface Props {
   lang: Lang;
   title: string;
   description?: string;
-  image?: string;
+  image?: BlogEntry["data"]["image"];
   ogType?: "website" | "article";
   path: string;
   alternates: Alternate[];
@@ -32,7 +33,7 @@ const {
 
 const site = "https://akimo.dev";
 const canonical = new URL(path, site).toString();
-const ogImage = new URL(image ?? defaultOgImage, site).toString();
+const ogImage = new URL(image?.src ?? defaultOgImage.src, site).toString();
 const ogLocale = lang === "ja" ? "ja_JP" : "en_US";
 const ogAlternate = lang === "ja" ? "en_US" : "ja_JP";
 const htmlLang = lang === "ja" ? "ja" : "en";

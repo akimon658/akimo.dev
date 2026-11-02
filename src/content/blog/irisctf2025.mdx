@@ -2,6 +2,9 @@
 title: IrisCTF 2025 writeup (Web)
 date: 2025-01-07T17:21:46+09:00
 ---
+import { Image } from "astro:assets";
+import denoDeployPlayground from "../../assets/deno-deploy-playground.png";
+import passwordManager from "../../assets/password-manager.png";
 
 日本時間の2025年1月4日9:00から2日間開催された[IrisCTF](https://irisc.tf/)に[traP](https://trap.jp/)として参加し、1064チーム中89位を獲得した。僕はWebの問題を3問解いたので、それについて振り返る。
 
@@ -17,7 +20,12 @@ var PathReplacer = strings.NewReplacer(
 
 が、別に置換後の文字列はチェックされないので`....//`を使えばいい。
 
-![password-manager-web.chal.irisc.tf/...//users.jsonにアクセスし、パスワードを入手した様子](/img/password-manager.avif)
+<Image
+  src={passwordManager}
+  alt="password-manager-web.chal.irisc.tf/...//users.jsonにアクセスし、パスワードを入手した様子"
+  format="avif"
+  quality={60}
+/>
 
 あとは入手したパスワードを使ってログインすればflagが表示される。
 
@@ -135,7 +143,12 @@ Deno.serve((req) => {
 
 初めてDeno Deployを使ってみたが、リポジトリを用意したりしなくてもplaygroundでサクッとサーバーを立てられるのは便利だった。
 
-![Deno Deployのplayground](/img/deno-deploy-playground.avif)
+<Image
+  src={denoDeployPlayground}
+  alt="Deno Deployのplayground"
+  format="avif"
+  quality={60}
+/>
 
 ## おわりに
 

@@ -1,11 +1,13 @@
 ---
+import { Picture } from "astro:assets";
+import type { BlogEntry } from "../libs/posts";
 import { siteText, type Lang } from "../libs/site";
 
 interface Props {
   lang: Lang;
   title: string;
   date: Date;
-  image?: string;
+  image?: BlogEntry["data"]["image"];
 }
 
 const { lang, title, date, image } = Astro.props;
@@ -24,10 +26,16 @@ const formatted = `${date.toLocaleDateString(locale, {
   {
     image ? (
       <div class="relative aspect-video overflow-hidden rounded">
-        <img
+        <Picture
           src={image}
+          formats={["avif", "webp"]}
+          width={960}
+          height={540}
+          fit="cover"
           alt=""
-          class="absolute inset-0 h-full w-full object-cover"
+          loading="eager"
+          pictureAttributes={{ class: "absolute inset-0 h-full w-full" }}
+          class="h-full w-full object-cover"
         />
         <div
           class="

@@ -7,6 +7,8 @@ tags: ["Hugo"]
 oldUrl: "/p/2022/hugo-whitespace/"
 id: hugo-whitespace
 ---
+import { Image } from "astro:assets";
+import unnecessaryWhitespace from "../../assets/unnecessary-whitespace.webp";
 
 このブログは [Hugo](https://gohugo.io) を使って運用しています。
 多機能なのに高速でめちゃくちゃ便利なんですが、リンクを貼ると後ろに余計な半角スペースが入ってしまって気持ち悪かったので原因を調べました。
@@ -18,7 +20,12 @@ This is [test](https://example.com), just a [sample](https://sample.test).
 
 これが
 
-![余分なスペースの例](/img/unnecessary-whitespace.avif)
+<Image
+  src={unnecessaryWhitespace}
+  alt="余分なスペースの例"
+  format="avif"
+  quality={60}
+/>
 
 こうなる。（カンマ、ピリオドの前に余計なスペースが入っている）
 

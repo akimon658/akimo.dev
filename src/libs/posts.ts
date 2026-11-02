@@ -15,7 +15,7 @@ export type ExternalEntry = CollectionEntry<"external">;
 export interface PostItem {
   title: string;
   href: string;
-  image?: string;
+  image?: BlogEntry["data"]["image"];
   date: Date;
   lang: Lang;
   isExternal: boolean;

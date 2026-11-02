@@ -153,4 +153,5 @@ const en: SiteText = {
 export const siteText: Record<Lang, SiteText> = { ja, en };
 
 export const twitterHandle = "@akimon658";
-export const defaultOgImage = "/img/og/default.png";
+
+export { default as defaultOgImage } from "../assets/og/default.png";

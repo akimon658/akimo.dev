@@ -16,12 +16,13 @@ const blog = defineCollection({
     // indistinguishable. Only the file extension is stripped.
     generateId: ({ entry }) => entry.replace(/\.mdx$/, ""),
   }),
-  schema: z.object({
-    title: z.string(),
-    description: z.string().optional(),
-    date: z.coerce.date().optional(),
-    image: z.string().optional(),
-  }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      description: z.string().optional(),
+      date: z.coerce.date().optional(),
+      image: image().optional(),
+    }),
 });
 
 // Metadata-only entries for articles hosted elsewhere (Zenn, traP, ...).
@@ -29,12 +30,13 @@ const blog = defineCollection({
 // Lume era there is no `/external/` route to hide from robots/sitemap.
 const external = defineCollection({
   loader: glob({ base: "./src/data/external", pattern: "**/*.yaml" }),
-  schema: z.object({
-    title: z.string(),
-    date: z.coerce.date(),
-    externalUrl: z.string().url(),
-    image: z.string().optional(),
-  }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      date: z.coerce.date(),
+      externalUrl: z.string().url(),
+      image: image().optional(),
+    }),
 });
 
 export const collections = { blog, external };
