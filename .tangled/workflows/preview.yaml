@@ -45,6 +45,7 @@ steps:
       grep -oE 'https://[A-Za-z0-9.-]+\.workers\.dev[^ ]*' wrangler-output.txt | head -n 1 > preview-url.txt
   - name: Comment preview URL
     command: |
+      printf '%s\n' "${TG_APP_PASSWORD}" | tg auth login bot.akimo.dev --password-stdin --insecure
       RKEY="$(tg pr list --state open --json | jq -r --arg b "${TANGLED_PR_SOURCE_BRANCH}" '.items[] | select(.sourceBranch == $b) | .rkey' | head -n 1)"
       URL="$(cat preview-url.txt)"
       echo "Preview deployed: ${URL}" > body.md
