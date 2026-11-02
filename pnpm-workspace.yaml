@@ -11,3 +11,4 @@ allowBuilds:
   tree-sitter-javascript: true
   tree-sitter-json: true
   tree-sitter-typescript: true
+  workerd: true
