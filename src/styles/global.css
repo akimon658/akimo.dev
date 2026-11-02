@@ -11,7 +11,6 @@
   --max-width-content: 1280px;
   --max-width-reader: 880px;
 
-  /* Theme-aware tokens (light) and their dark counterparts */
   --color-surface: #f8fafc;
   --color-surface-dark: #0b0e13;
   --color-card: #ffffff;
@@ -33,7 +32,6 @@
   --color-on-accent: #ffffff;
   --color-on-accent-dark: #0b0e13;
 
-  /* Theme-independent tokens */
   --color-on-media: #ffffff;
   --color-on-media-soft: #f1f5f9;
   --color-on-media-faint: #cbd5e1;
@@ -43,7 +41,6 @@
   --color-brand-affiliation-kirara: #2c2c2e;
   --color-brand-affiliation-pixiv: #0096fa;
 
-  /* Syntax highlighting */
   --color-code: #1f1f1f;
   --color-code-fg: #d4d4d4;
   --color-code-inline: #f3f4f6;
@@ -53,9 +50,6 @@
   --content-open-in-new-dark: url("/icon/open_in_new_16dp_6C9DCB.svg");
 }
 
-/* Markdown styles of the article body, following the Article page of the design
-   file. They live in the components layer so the utilities of components
-   rendered inside an article (LinkCard) always win over them. */
 @layer components {
   .article-body {
     color: var(--color-body);
@@ -64,8 +58,6 @@
     line-height: 1.8;
   }
 
-  /* Blocks are spaced by the gap between siblings, which keeps the first and
-     the last child flush and removes the need for per-element resets. */
   .article-body > * + * {
     margin-block-start: 1rem;
   }

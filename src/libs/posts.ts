@@ -1,10 +1,3 @@
-// Unified article-list model: self-authored `blog` posts of one language,
-// plus the `external` metadata entries. External entries carry no `lang`
-// field, so like the former Lume build (where lang-less pages belong to the
-// default language) they appear in Japanese lists only. Sorted newest-first,
-// mirroring the former `List` component query
-// (`category=blog`, `sort=date=desc`).
-
 import { getCollection, type CollectionEntry } from "astro:content";
 import { getOldestCommitDate } from "@it-astro:content/git";
 import { siteText, type Lang } from "./site";
@@ -28,21 +21,14 @@ export interface Alternate {
   label: string;
 }
 
-/** Collection id `awesome-header.en` -> lang `en`; anything else -> `ja`. */
 export const langOf = (id: string): Lang =>
   id.endsWith(".en") ? "en" : "ja";
 
-/** Collection id -> URL slug (`awesome-header.en` -> `awesome-header`). */
 export const slugOf = (id: string): string => id.replace(/\.en$/, "");
 
 export const postUrl = (lang: Lang, slug: string): string =>
   lang === "ja" ? `/blog/${slug}/` : `/en/blog/${slug}/`;
 
-/**
- * Lume's `date: Git Created` default: explicit frontmatter date wins,
- * otherwise the file's Git creation date. Provided by inox-tools'
- * content-utils (B案); uncommitted files resolve to the current time.
- */
 export async function resolveBlogDate(entry: BlogEntry): Promise<Date> {
   if (entry.data.date instanceof Date) {
     return entry.data.date;
@@ -83,12 +69,6 @@ export async function getSortedPosts(lang: Lang): Promise<PostItem[]> {
   return dated.sort((a, b) => b.date.getTime() - a.date.getTime());
 }
 
-/**
- * Counterpart of a blog post in the other language, matched by slug
- * (the former Lume `id` frontmatter always equaled the slug).
- * The label comes from the *other* locale's dictionary, so e.g. the
- * Japanese page offers "Switch to English".
- */
 export async function getPostAlternates(
   slug: string,
   lang: Lang,

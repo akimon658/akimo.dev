@@ -1,19 +1,3 @@
-// Tree-sitter syntax highlighting as a rehype plugin.
-//
-// Direct port of the `parseCode` logic from the former Lume `_config.ts`:
-// the same grammars, the same `<pre><code class="lang-*">` wrapper and the
-// same `<span class="ts-*">` node annotations, so the existing
-// `src/styles/vscode.css` keeps working unchanged.
-//
-// Differences from the Lume version:
-// - Runs on hast (`pre > code.language-*`) instead of mdast, because Astro
-//   applies rehype plugins after remark-rehype. Inline code is untouched,
-//   exactly like before (only fenced blocks were highlighted).
-// - Builds hast nodes instead of HTML strings, so no `escape-html` round
-//   trip or `rehype-raw` pass is needed; the serializer escapes text nodes.
-// - Like the original, byte offsets from tree-sitter are used to slice the
-//   source string. This is kept byte-for-byte compatible on purpose.
-
 import Lua from "@tree-sitter-grammars/tree-sitter-lua";
 import Markdown from "@tree-sitter-grammars/tree-sitter-markdown";
 import YAML from "@tree-sitter-grammars/tree-sitter-yaml";
@@ -61,7 +45,6 @@ const span = (type, children) => ({
 
 const text = (value) => ({ type: "text", value });
 
-// Expansion of a node's children: gap text interleaved with wrapped nodes.
 function childrenToHast(tsNode) {
   const children = [];
   let lastIndex = tsNode.startIndex;

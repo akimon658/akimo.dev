@@ -7,7 +7,6 @@ import remarkGfm from "remark-gfm";
 import { defineConfig } from "astro/config";
 import { rehypeTreeSitter } from "./src/libs/rehype-tree-sitter.mjs";
 
-// https://astro.build/config
 export default defineConfig({
   site: "https://akimo.dev",
   output: "static",
@@ -32,9 +31,6 @@ export default defineConfig({
     contentUtils(),
   ],
   markdown: {
-    // Highlighting is done by our tree-sitter rehype plugin (ported from
-    // Lume) so the built-in Shiki highlighter must stay off: it would
-    // otherwise rewrite `pre > code.language-*` before our plugin runs.
     syntaxHighlight: false,
     remarkPlugins: [remarkGfm],
     rehypePlugins: [

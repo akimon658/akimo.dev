@@ -1,7 +1,3 @@
-// Localized UI strings and site data, ported from the former `src/_data.yml`
-// (Lume's multilanguage cascade: top level = Japanese defaults,
-// `en:` overrides for English).
-
 export type Lang = "ja" | "en";
 
 export type IconName = "bluesky" | "github";
