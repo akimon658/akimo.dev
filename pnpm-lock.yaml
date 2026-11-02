@@ -207,8 +207,8 @@ importers:
         version: 5.1.0
     devDependencies:
       '@tree-sitter-grammars/tree-sitter-lua':
-        specifier: 0.2.0
-        version: 0.2.0(tree-sitter@0.25.1)
+        specifier: 0.4.1
+        version: 0.4.1(tree-sitter@0.25.1)
       '@tree-sitter-grammars/tree-sitter-markdown':
         specifier: 0.3.2
         version: 0.3.2(tree-sitter@0.25.1)
@@ -1532,13 +1532,12 @@ packages:
     peerDependencies:
       vite: ^5.2.0 || ^6 || ^7 || ^8
 
-  '@tree-sitter-grammars/tree-sitter-lua@0.2.0':
-    resolution: {integrity: sha512-VPk971J3hBUNr7CpZJvgTU5UmEkW8iMQ0Sk6br4O3xL00XFEO4PCjSSGeYYakRgPAJiIR8J594UcBK+7ilBvqw==}
+  '@tree-sitter-grammars/tree-sitter-lua@0.4.1':
+    resolution: {integrity: sha512-EwagFaU6ZveVk18/Y8qUhZkkiBKnQ7dSCHbm//TUroLVKy3i1rOYGy/cNHtSkAb1eDvS1HhCLybH2S541Cya/g==}
     peerDependencies:
-      tree-sitter: ^0.21.1
-      tree_sitter: '*'
+      tree-sitter: ^0.22.4
     peerDependenciesMeta:
-      tree_sitter:
+      tree-sitter:
         optional: true
 
   '@tree-sitter-grammars/tree-sitter-markdown@0.3.2':
@@ -4428,10 +4427,11 @@ snapshots:
       tailwindcss: 4.3.3
       vite: 6.4.4(@types/node@24.19.2)(jiti@2.7.0)(lightningcss@1.32.0)(yaml@2.9.1)
 
-  '@tree-sitter-grammars/tree-sitter-lua@0.2.0(tree-sitter@0.25.1)':
+  '@tree-sitter-grammars/tree-sitter-lua@0.4.1(tree-sitter@0.25.1)':
     dependencies:
       node-addon-api: 8.9.2
       node-gyp-build: 4.8.4
+    optionalDependencies:
       tree-sitter: 0.25.1
 
   '@tree-sitter-grammars/tree-sitter-markdown@0.3.2(tree-sitter@0.25.1)':
