@@ -1,0 +1,43 @@
+---
+import Card from "./Card.astro";
+import SeeMore from "./SeeMore.astro";
+import type { PostItem } from "../libs/posts";
+
+interface Props {
+  posts: PostItem[];
+  seeMoreHref?: string;
+  seeMoreLabel?: string;
+}
+
+const { posts, seeMoreHref, seeMoreLabel } = Astro.props;
+const omitted = seeMoreHref !== undefined && seeMoreLabel !== undefined;
+---
+
+<div
+  class="
+    grid
+    grid-cols-1
+    gap-4
+    md:grid-cols-3
+    md:gap-5
+  "
+>
+  {
+    posts.map((post) => (
+      <Card
+        href={post.href}
+        image={post.image}
+        title={post.title}
+        lang={post.lang}
+        date={post.date}
+      />
+    ))
+  }
+</div>
+{
+  omitted && (
+    <div class="mt-8 flex justify-center">
+      <SeeMore href={seeMoreHref} label={seeMoreLabel} />
+    </div>
+  )
+}

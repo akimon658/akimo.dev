@@ -1,0 +1,119 @@
+---
+title: Tree-sitterでシンタックスハイライトするためにHugoからLumeに移行した
+date: 2024-11-04T15:49:30+09:00
+---
+
+このブログは以前Hugoで作成していたが、ちょっと前にDeno製の[Lume](https://lume.land/)という静的サイトジェネレータに移行した。
+
+## 移行の理由
+
+まずは次のコードブロックを見てほしい。
+
+```typescript
+const parseCode = (code: string, lang: string) => {
+  const languages: Record<string, unknown> = {
+    go: Go,
+    html: HTML,
+    javascript: JavaScript,
+    lua: Lua,
+    markdown: Markdown,
+    shell: Bash,
+    ts: TypeScript.typescript,
+    yaml: YAML,
+  }
+
+  if (!(lang in languages)) {
+    return `<pre><code>${escapeHtml(code)}</code></pre>`
+  }
+
+  const parser = new Parser()
+  parser.setLanguage(languages[lang])
+
+  const tree = parser.parse(code)
+
+  const wrapTag = (node: Parser.SyntaxNode, content?: string): string => {
+    let openTag = `<span class="ts-${escapeHtml(node.type)}">`,
+      closeTag = "</span>"
+
+    if (node.parent === null) {
+      openTag = `<pre><code class="lang-${lang}">`
+      closeTag = "</code></pre>"
+    }
+
+    return openTag + (content || escapeHtml(node.text)) + closeTag
+  }
+
+  const nodeToHtml = (node: Parser.SyntaxNode): string => {
+    if (node.childCount === 0) {
+      return wrapTag(node)
+    }
+
+    let content = ""
+    let lastIndex = node.startIndex
+
+    // 各childは空白や改行を含まないので、それらを含めるためにnode.textを使う
+    for (const child of node.children) {
+      content += escapeHtml(
+        node.text.slice(
+          lastIndex - node.startIndex,
+          child.startIndex - node.startIndex,
+        ),
+      )
+      content += nodeToHtml(child)
+      lastIndex = child.endIndex
+    }
+
+    content += escapeHtml(node.text.slice(lastIndex - node.startIndex))
+
+    return wrapTag(node, content)
+  }
+
+  return nodeToHtml(tree.rootNode)
+}
+```
+
+結構細かくシンタックスハイライトされているのが分かると思う。
+これは[Tree-sitter](https://github.com/tree-sitter/tree-sitter)という、かつてAtomのために作られ今はNeovimなどで使われているツールによって実現している。
+このような、外部に依存することをするときにHugoだとかなり辛いというのが移行の理由だ。
+
+## Lumeのいいところ
+
+昔HugoでOGPを用いたカード型のリンクを作ろうとしたときにはHugo単体ではできず、[OGPのメタタグをJSONにするサーバ](https://github.com/akimon658/ogjson)を立てるという面倒なことをしていた（今はHugoだけでもできるらしい[^1]が、独特のテンプレート記法を使わなければいけないのでかなり書きにくいと思う）。
+Tree-sitterを使うときにもやはり別途サーバを立てる必要があるだろう。
+ところがLumeなら、Denoでできることは何でも手軽にできちゃうのだ。
+
+よくHugoの利点としてシングルバイナリであることが挙げられるが、正直そこにはあまり意味がないと思っている。
+実際WebPのエンコードやSassをPure GoではサポートできないためにHugo ExtendedがあったりDart Sassを入れる必要があったりと、ちょっと凝ったことをしようとするとシングルバイナリではなくなってしまう。
+そういった依存関係の管理はHugoの方が面倒ではないだろうか。
+その点Lumeは、Denoさえインストールされていればあとは全部Denoがやってくれる[^2]ので楽だ。
+「絶対にWebPもSassも使わない！MarkdownからHTMLが生成できればそれで十分だ！！」というシンプルなサイトならHugoの方が適しているが、個人サイトの場合は拡張性が高く好きにカスタマイズできるLumeの方が楽しいと思う。
+
+また、MDXが使えるというのも大きい。
+機能的にはHugoのshortcodeでも同等のことができるが、将来的にまた移行する可能性を考えると独自記法に依存するのは避けたい。
+
+ちなみに拡張性やMDXという観点でみるとLume以外にNode.jsなどで動く静的サイトジェネレータにもここまでの話は当てはまるだろうが、あとはもう好みの問題だ。
+僕はDenoの方が好きだが、Node.jsとの互換性も向上しているのでLumeにこだわる必要もないかもしれない。
+ただLumeは歴史が浅い分シンプルなのがいいと思う。
+
+## 速度について
+
+ここまでで述べたLumeのメリットはTypeScriptで書かれていることによりもたらされているが、その分性能面はある程度犠牲になっていると思う。
+パフォーマンスを求める場合はLumeよりHugoの方がいいかもしれないが、そうなるとRust製の[Zola](https://www.getzola.org/)なんかも選択肢に入ってくるだろう。
+ただ今のところはLumeでも遅さを感じないので、数百、数千ページを一気にビルドするようなサイトでなければ大差ないと思う。
+Lumeでは`deno task serve`しているときにファイルを編集すると更新があったもののみリビルドされるので執筆中に速度が気になることはないし、デプロイ時のビルドはGitHub Actionsで行っているので個人的には遅くなっても問題ない。
+
+## 余談：Tree-sitterによるシンタックスハイライト
+
+Tree-sitter CLIにはHTMLを出力する機能がある[^3]のでそれを使うのが一番簡単だとは思うが、Denoで完結させたかったのでCLIは使わずに自前で実装した。
+
+Tree-sitterでパースしたコードをHTMLに変換するのは結構簡単で、公式のNode.jsバインディングとNPMにある各言語のパーサを使えば冒頭のコードのように書ける。
+ただTree-sitterがやってくれるのは構文解析だけで、テーマ自体は自分で作らなければいけない。
+また上記のコードは各`node`の`type`を基にクラスを付けているが、これだと関数の判別などをCSSセレクタで頑張る必要がある。
+その辺をTree-sitterのクエリで行うようにすればNeovimのテーマなども流用できるようになるかも。
+
+あと、言語によってはパーサが存在するのにNPMには公開されていない場合があることには注意が必要だ。
+DenoなのでGitHubから直接、あるいはesm.sh経由で読み込めないか試してみたが、どちらもうまくいかなかった。
+
+[^1]: [Hugoでついに外部URLのブログカードを作れるようになった【自作ショートコード】 | Hugoブログテーマ「Salt」](https://hugo-theme-salt.okdyy75.com/article/salt/blog-card/)
+[^2]: ただしTree-sitterを使う場合はCコンパイラが必要
+[^3]: [Tree-sitterでシンタックスハイライトしたコードをHTMLで出力するワンライナー - Lambdaカクテル](https://blog.3qe.us/entry/2023/05/15/200750#:~:text=sitter.github.io-,HTML%E3%81%AB%E5%87%BA%E5%8A%9B%E3%81%99%E3%82%8B(%E3%81%9D%E3%81%AE1)(%E8%BF%BD%E8%A8%98),-tree%2Dsitter%20highlight)

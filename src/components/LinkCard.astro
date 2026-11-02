@@ -1,0 +1,58 @@
+---
+interface Props {
+  href: string;
+  title: string;
+}
+
+const { href, title } = Astro.props;
+const host = new URL(href).hostname;
+---
+
+<a
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="
+    my-5
+    block
+    rounded
+    border
+    border-line
+    bg-card
+    text-body
+    transition-colors
+    hover:bg-subtle
+    hover:no-underline
+    dark:border-line-dark
+    dark:bg-card-dark
+    dark:text-body-dark
+    dark:hover:bg-subtle-dark
+  "
+>
+  <div class="flex flex-col gap-2 p-4">
+    <div
+      class="
+        text-base
+        leading-[1.5]
+        font-bold
+        text-body
+        dark:text-body-dark
+      "
+    >
+      {title}
+    </div>
+    <div
+      class="
+        flex
+        items-center
+        gap-2
+        text-xs
+        leading-[1.2]
+        text-sub
+        dark:text-sub-dark
+      "
+    >
+      {host}
+    </div>
+  </div>
+</a>

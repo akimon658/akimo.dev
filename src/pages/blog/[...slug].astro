@@ -1,0 +1,47 @@
+---
+import { getCollection, render } from "astro:content";
+import BlogPost from "../../layouts/BlogPost.astro";
+import Root from "../../layouts/Root.astro";
+import {
+  getPostAlternates,
+  langOf,
+  postUrl,
+  resolveBlogDate,
+  slugOf,
+} from "../../libs/posts";
+
+export async function getStaticPaths() {
+  const blog = await getCollection("blog");
+  return blog
+    .filter((entry) => langOf(entry.id) === "ja")
+    .map((entry) => ({
+      params: { slug: slugOf(entry.id) },
+      props: { entry },
+    }));
+}
+
+const { entry } = Astro.props;
+const slug = slugOf(entry.id);
+const date = await resolveBlogDate(entry);
+const alternates = await getPostAlternates(slug, "ja");
+const { Content } = await render(entry);
+---
+
+<Root
+  lang="ja"
+  title={entry.data.title}
+  description={entry.data.description}
+  image={entry.data.image}
+  ogType="article"
+  path={postUrl("ja", slug)}
+  alternates={alternates}
+>
+  <BlogPost
+    lang="ja"
+    title={entry.data.title}
+    date={date}
+    image={entry.data.image}
+  >
+    <Content />
+  </BlogPost>
+</Root>

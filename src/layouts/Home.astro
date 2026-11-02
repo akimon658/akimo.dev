@@ -1,0 +1,128 @@
+---
+import { Image } from "astro:assets";
+import { siBluesky, siGithub } from "simple-icons";
+import AffiliationItem from "../components/AffiliationItem.astro";
+import Icon from "../components/Icon.astro";
+import List from "../components/List.astro";
+import { getSortedPosts } from "../libs/posts";
+import { siteText, type Lang } from "../libs/site";
+import iconImage from "../assets/animated/icon.webp";
+
+const icons = {
+  bluesky: siBluesky,
+  github: siGithub,
+};
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const text = siteText[lang];
+const seeMoreHref = lang === "ja" ? "/blog/" : "/en/blog/";
+const posts = (await getSortedPosts(lang)).slice(0, 6);
+---
+
+<div
+  class="
+    mx-auto
+    flex
+    max-w-reader
+    flex-col
+    px-6
+    py-6
+    md:flex-row
+    md:items-center
+    md:gap-20
+    md:py-12
+  "
+>
+  <div class="flex flex-col items-center gap-4">
+    <Image
+      src={iconImage}
+      alt=""
+      width={128}
+      height={128}
+      format="webp"
+      quality={70}
+    />
+    <h1
+      class="
+        text-[40px]
+        leading-[1.2]
+        font-black
+        text-body
+        dark:text-body-dark
+      "
+    >
+      {text.author_name}
+    </h1>
+    <div class="flex flex-col items-center gap-4">
+      {
+        text.social.map((link) => (
+          <a
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class:list={[
+              `
+                inline-flex
+                items-center
+                gap-2
+                rounded-full
+                px-6
+                py-3
+                text-base
+                leading-[1.2]
+                text-on-media
+                transition-[filter]
+                hover:brightness-125
+              `,
+              link.border ? "border border-on-brand" : "",
+            ]}
+            style={{ "background-color": `#${icons[link.icon].hex}` }}
+          >
+            <Icon name={link.icon} size={18} />
+            {link.label}
+          </a>
+        ))
+      }
+    </div>
+  </div>
+  <div class="w-full py-8">
+    <h2
+      class="
+        text-center
+        text-[26px]
+        leading-[1.2]
+        font-bold
+        md:text-left
+        md:text-[32px]
+      "
+    >
+      {text.affiliations_heading}
+    </h2>
+    <ul class="mt-8 flex flex-col gap-2">
+      {
+        text.affiliations.map((affiliation) => (
+          <AffiliationItem {...affiliation} />
+        ))
+      }
+    </ul>
+  </div>
+</div>
+<div class="mx-auto max-w-reader px-6 py-8 md:px-0">
+  <h2
+    class="
+      mb-8
+      text-center
+      text-[26px]
+      leading-[1.2]
+      font-bold
+      md:text-[32px]
+    "
+  >
+    {text.wrote_articles}
+  </h2>
+  <List posts={posts} seeMoreHref={seeMoreHref} seeMoreLabel={text.see_more} />
+</div>

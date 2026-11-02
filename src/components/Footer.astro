@@ -1,0 +1,58 @@
+---
+import Link from "./Link.astro";
+import { siteText, type Lang } from "../libs/site";
+import type { Alternate } from "../libs/posts";
+
+interface Props {
+  lang: Lang;
+  alternates: Alternate[];
+}
+
+const { lang, alternates } = Astro.props;
+const { source_code } = siteText[lang];
+const visibleAlternates = alternates.filter(
+  (alternate) => alternate.lang !== lang,
+);
+---
+
+<footer class="w-full">
+  <div
+    class="
+      mx-auto
+      flex
+      w-full
+      max-w-[1440px]
+      flex-wrap
+      items-center
+      justify-center
+      gap-1
+      px-6
+      py-8
+      text-sm
+      leading-[1.2]
+      md:px-20
+    "
+  >
+    {
+      visibleAlternates.length > 0 && (
+        <>
+          {visibleAlternates.map((alternate) => (
+            <Link
+              href={alternate.url}
+              class="text-link dark:text-link-dark"
+            >
+              {alternate.label}
+            </Link>
+          ))}
+          <span class="text-sub dark:text-sub-dark">|</span>
+        </>
+      )
+    }
+    <Link
+      href="https://github.com/akimon658/akimo.dev"
+      class="text-link dark:text-link-dark"
+    >
+      {source_code}
+    </Link>
+  </div>
+</footer>

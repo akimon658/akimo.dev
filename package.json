@@ -1,0 +1,50 @@
+{
+  "name": "akimo.dev",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@12.9.0",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "astro dev --port 4000",
+    "build": "astro build",
+    "preview": "astro preview --port 4000",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.12",
+    "@astrojs/mdx": "^4.3.0",
+    "@astrojs/sitemap": "^3.2.0",
+    "@fontsource-variable/noto-sans-jp": "^5.2.0",
+    "@fontsource-variable/roboto-mono": "^5.2.0",
+    "@inox-tools/content-utils": "^0.16.0",
+    "@tailwindcss/vite": "^4.1.0",
+    "astro": "^5.13.0",
+    "rehype-external-links": "^3.0.0",
+    "remark-gfm": "^4.0.1",
+    "simple-icons": "^16.33.0",
+    "tailwindcss": "^4.1.0",
+    "unist-util-visit": "^5.0.0"
+  },
+  "devDependencies": {
+    "@tree-sitter-grammars/tree-sitter-lua": "0.2.0",
+    "@tree-sitter-grammars/tree-sitter-markdown": "0.3.2",
+    "@tree-sitter-grammars/tree-sitter-yaml": "0.7.1",
+    "cssnano": "7.1.4",
+    "cssnano-preset-advanced": "7.0.12",
+    "escape-html": "1.0.3",
+    "postcss-variable-compress": "3.0.0",
+    "sharp": "^0.35.5",
+    "tree-sitter": "0.25.1",
+    "tree-sitter-bash": "0.25.1",
+    "tree-sitter-go": "0.25.0",
+    "tree-sitter-html": "0.23.2",
+    "tree-sitter-javascript": "0.25.0",
+    "tree-sitter-json": "0.24.8",
+    "tree-sitter-typescript": "0.23.2",
+    "typescript": "^5.9.0",
+    "wrangler": "^4.156.0"
+  }
+}

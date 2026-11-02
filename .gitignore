@@ -1,4 +1,6 @@
 _cache/
-public/
+node_modules/
+dist/
+.astro/
 # Playwright CLI output (may contain credentials)
 .playwright-cli/
