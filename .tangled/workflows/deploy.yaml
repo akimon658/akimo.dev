@@ -1,0 +1,42 @@
+when:
+  - event:
+      - push
+      - manual
+    branch:
+      - main
+    paths:
+      - src/**
+      - public/**
+      - astro.config.mjs
+      - package.json
+      - pnpm-lock.yaml
+      - pnpm-workspace.yaml
+      - postcss.config.mjs
+      - tsconfig.json
+      - wrangler.jsonc
+engine: microvm
+image: nixos
+dependencies:
+  - nodejs
+  - pnpm
+  - git
+environment:
+  TZ: Asia/Tokyo
+clone:
+  depth: 1
+  tags: true
+  submodules: true
+steps:
+  - name: Full clone
+    command: |
+      git fetch --unshallow
+      git fetch --tags
+  - name: Install dependencies
+    command: |
+      pnpm install --frozen-lockfile
+  - name: Build
+    command: |
+      pnpm build
+  - name: Deploy
+    command: |
+      pnpm exec wrangler deploy

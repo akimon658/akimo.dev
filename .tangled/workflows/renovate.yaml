@@ -1,0 +1,36 @@
+when:
+  - event:
+      - push
+    branch:
+      - main
+  - event:
+      - manual
+engine: microvm
+image: nixos
+dependencies:
+  - nodejs
+  - git
+  - openssh
+  - nix
+steps:
+  - name: Setup SSH
+    command: |
+      echo "root:x:0:0:root:$HOME:/bin/sh" >> /etc/passwd
+      mkdir -p ~/.ssh
+      echo "${SSH_PRIVATE_KEY}" > ~/.ssh/id_ed25519
+      chmod 600 ~/.ssh/id_ed25519
+      ssh-keyscan -t ed25519,rsa tangled.org >> ~/.ssh/known_hosts
+  - name: Install Renovate
+    command: |
+      echo "@akimon658:registry=https://npm.pkg.github.com" > ~/.npmrc
+      echo "//npm.pkg.github.com/:_authToken=${NPM_TOKEN}" >> ~/.npmrc
+      npm install -g @akimon658/renovate@44.199.2-tangled.46
+  - name: Run Renovate
+    environment:
+      RENOVATE_PLATFORM: tangled
+      RENOVATE_USERNAME: bot.akimo.dev
+      RENOVATE_GIT_AUTHOR: Renovate <noreply+renovate@akimo.dev>
+      RENOVATE_REPOSITORIES: '["akimo.dev/akimo.dev"]'
+      RENOVATE_LOG_LEVEL: debug
+    command: |
+      renovate

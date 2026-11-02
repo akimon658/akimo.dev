@@ -1,0 +1,51 @@
+when:
+  - event:
+      - pull_request
+    branch:
+      - main
+    paths:
+      - src/**
+      - public/**
+      - astro.config.mjs
+      - package.json
+      - pnpm-lock.yaml
+      - pnpm-workspace.yaml
+      - postcss.config.mjs
+      - tsconfig.json
+      - wrangler.jsonc
+engine: microvm
+image: nixos
+dependencies:
+  - nodejs
+  - pnpm
+  - git
+  - jq
+  - github:alyraffauf/tg#default
+environment:
+  TZ: Asia/Tokyo
+clone:
+  depth: 1
+  tags: true
+  submodules: true
+steps:
+  - name: Full clone
+    command: |
+      git fetch --unshallow
+      git fetch --tags
+  - name: Install dependencies
+    command: |
+      pnpm install --frozen-lockfile
+  - name: Build
+    command: |
+      pnpm build
+  - name: Upload preview
+    command: |
+      ALIAS="pr-${TANGLED_SHA}"
+      pnpm exec wrangler versions upload --preview-alias "${ALIAS}" 2>&1 | tee wrangler-output.txt
+      grep -oE 'https://[A-Za-z0-9.-]+\.workers\.dev[^ ]*' wrangler-output.txt | head -n 1 > preview-url.txt
+  - name: Comment preview URL
+    command: |
+      RKEY="$(tg pr list --state open --json | jq -r --arg b "${TANGLED_PR_SOURCE_BRANCH}" '.items[] | select(.sourceBranch == $b) | .rkey' | head -n 1)"
+      URL="$(cat preview-url.txt)"
+      echo "Preview deployed: ${URL}" > body.md
+      tg pr comment "${RKEY}" --body-file body.md --json
