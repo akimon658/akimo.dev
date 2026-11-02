@@ -227,9 +227,6 @@ importers:
       postcss-variable-compress:
         specifier: 3.0.0
         version: 3.0.0(postcss@8.5.29)
-      sharp:
-        specifier: ^0.34.0
-        version: 0.34.5
       tree-sitter:
         specifier: 0.25.1
         version: 0.25.1
@@ -3377,7 +3374,8 @@ snapshots:
 
   '@fontsource-variable/roboto-mono@5.3.0': {}
 
-  '@img/colour@1.1.0': {}
+  '@img/colour@1.1.0':
+    optional: true
 
   '@img/sharp-darwin-arm64@0.34.5':
     optionalDependencies:
@@ -5641,6 +5639,7 @@ snapshots:
       '@img/sharp-win32-arm64': 0.34.5
       '@img/sharp-win32-ia32': 0.34.5
       '@img/sharp-win32-x64': 0.34.5
+    optional: true
 
   shiki@3.23.0:
     dependencies:

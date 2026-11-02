@@ -11,8 +11,7 @@
     "dev": "astro dev --port 4000",
     "build": "astro build",
     "preview": "astro preview --port 4000",
-    "check": "astro check",
-    "images": "node scripts/images.mjs"
+    "check": "astro check"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.12",
@@ -37,7 +36,6 @@
     "cssnano-preset-advanced": "7.0.12",
     "escape-html": "1.0.3",
     "postcss-variable-compress": "3.0.0",
-    "sharp": "^0.34.0",
     "tree-sitter": "0.25.1",
     "tree-sitter-bash": "0.25.1",
     "tree-sitter-go": "0.25.0",
